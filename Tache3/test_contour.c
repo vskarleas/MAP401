@@ -20,7 +20,7 @@ int main(int argc, char **argv)
     printf("=====================\n");
     Contour k;
     k = algo_contour(I);
-
+    
     return 0;
 
 }

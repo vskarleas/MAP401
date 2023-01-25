@@ -246,6 +246,7 @@ Contour algo_contour(Image I)
     {
         // Initialisation du position du robot
         Point rb = set_point(depart.x - 1, depart.y - 1);
+        //Partie 1
         printf("Pixel de depart: %f , %f\n", rb.x, rb.y);
         printf("-----------\n");
         Point original_position = set_point(depart.x - 1, depart.y - 1);
@@ -260,6 +261,7 @@ Contour algo_contour(Image I)
         bool repeat = true;
         while (repeat)
         {
+            //Partie 1
             printf("(%f , %f)\n", rb.x, rb.y);
             ajouter_element_liste_Point(c, rb);
             avancer(&robot);
@@ -271,6 +273,7 @@ Contour algo_contour(Image I)
             }
         }
         ajouter_element_liste_Point(c, rb);
+        //Partie 1
         printf("(%f , %f)\n", rb.x, rb.y);
         return c;
     }
