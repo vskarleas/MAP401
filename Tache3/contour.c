@@ -219,7 +219,7 @@ Point trouver_pixel_depart(Image I)
             case (NOIR):
                 if (j != largeur)
                 {
-                    voisin = get_pixel_image(I, j + 1, i);
+                    voisin = get_pixel_image(I, j, i-1);
                     if (voisin == BLANC)
                     {
                         depart = set_point(j, i);
