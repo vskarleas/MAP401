@@ -46,6 +46,6 @@ void nouvelle_orientation(Robot *r, int x, int y, Image I);
 /* Fonction qui renvoi les coordonees du pixel de depart */
 Point trouver_pixel_depart(Image I);
 
-Contour algo_contour(Image I);
+Contour algo_contour(Image I, char *file_name, int countour_number);
 
 #endif /* _CONTOUR_H_ */

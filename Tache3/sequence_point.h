@@ -29,7 +29,6 @@ typedef struct Tableau_Point_
 	Point *tab;          /* (pointeur vers) le tableau des �l�ments */
 } Tableau_Point;
 
-
 /* cr�er une cellule de liste avec l'�l�ment v 
    renvoie le pointeur sur la cellule de liste cr��e
    la fonction s'arrete si la cr�ation n'a pas pu se faire */
@@ -39,7 +38,7 @@ Cellule_Liste_Point *creer_element_liste_Point(Point v);
 Liste_Point creer_liste_Point_vide();
 
 /* ajouter l'�l�ment e en fin de la liste L, renvoie la liste L modifi�e */
-Liste_Point ajouter_element_liste_Point(Liste_Point L, Point e);
+void ajouter_element_liste_Point(Liste_Point *L, Point e);
 
 /* suppression de tous les �l�ments de la liste, renvoie la liste L vide */
 Liste_Point supprimer_liste_Point(Liste_Point L);

@@ -127,77 +127,75 @@ void nouvelle_orientation(Robot *r, int x, int y, Image I)
     Pixel pD;
     switch (r->o)
     {
-        case (Est) :
-            pG = get_pixel_image(I, x+1, y);
-            pD = get_pixel_image(I, x+1, y+1);
-            if (pG == NOIR)
-            {
-                r->o = Nord;
-                break;
-            }
-            else if (pD == BLANC)
-            {
-                r->o = Sud;
-                break;
-            }
-            else
-            {
-                break;
-            }
-        case (Nord) :
-            pG = get_pixel_image(I, x, y);
-            pD = get_pixel_image(I, x+1, y);
-            if (pG == NOIR)
-            {
-                r->o = Ouest;
-                break;
-            }
-            else if (pD == BLANC)
-            {
-                r->o = Est;
-                break;
-            }
-            else
-            {
-                break;
-            }
-        case (Sud) :
-            pG = get_pixel_image(I, x+1, y+1);
-            pD = get_pixel_image(I, x, y+1);
-            if (pG == NOIR)
-            {
-                r->o = Est;
-                break;
-            }
-            else if (pD == BLANC)
-            {
-                r->o = Ouest;
-                break;
-            }
-            else
-            {
-                break;
-            }
-        case (Ouest) :
-            pG = get_pixel_image(I, x, y+1);
-            pD = get_pixel_image(I, x, y);
-            if (pG == NOIR)
-            {
-                r->o = Sud;
-                break;
-            }
-            else if (pD == BLANC)
-            {
-                r->o = Nord;
-                break;
-            }
-            else
-            {
-                break;
-            }
+    case (Est):
+        pG = get_pixel_image(I, x + 1, y);
+        pD = get_pixel_image(I, x + 1, y + 1);
+        if (pG == NOIR)
+        {
+            r->o = Nord;
+            break;
+        }
+        else if (pD == BLANC)
+        {
+            r->o = Sud;
+            break;
+        }
+        else
+        {
+            break;
+        }
+    case (Nord):
+        pG = get_pixel_image(I, x, y);
+        pD = get_pixel_image(I, x + 1, y);
+        if (pG == NOIR)
+        {
+            r->o = Ouest;
+            break;
+        }
+        else if (pD == BLANC)
+        {
+            r->o = Est;
+            break;
+        }
+        else
+        {
+            break;
+        }
+    case (Sud):
+        pG = get_pixel_image(I, x + 1, y + 1);
+        pD = get_pixel_image(I, x, y + 1);
+        if (pG == NOIR)
+        {
+            r->o = Est;
+            break;
+        }
+        else if (pD == BLANC)
+        {
+            r->o = Ouest;
+            break;
+        }
+        else
+        {
+            break;
+        }
+    case (Ouest):
+        pG = get_pixel_image(I, x, y + 1);
+        pD = get_pixel_image(I, x, y);
+        if (pG == NOIR)
+        {
+            r->o = Sud;
+            break;
+        }
+        else if (pD == BLANC)
+        {
+            r->o = Nord;
+            break;
+        }
+        else
+        {
+            break;
+        }
     }
-    
-    
 }
 
 Point trouver_pixel_depart(Image I)
@@ -219,7 +217,7 @@ Point trouver_pixel_depart(Image I)
             case (NOIR):
                 if (j != largeur)
                 {
-                    voisin = get_pixel_image(I, j, i-1);
+                    voisin = get_pixel_image(I, j, i - 1);
                     if (voisin == BLANC)
                     {
                         depart = set_point(j, i);
@@ -234,8 +232,9 @@ Point trouver_pixel_depart(Image I)
     return depart;
 }
 
-Contour algo_contour(Image I)
+Contour algo_contour(Image I, char *file_name, int countour_number)
 {
+    // Managing specific contour
     Point depart = trouver_pixel_depart(I);
     if (depart.x == -1 && depart.y == -1)
     {
@@ -246,10 +245,10 @@ Contour algo_contour(Image I)
     {
         // Initialisation du position du robot
         Point rb = set_point(depart.x - 1, depart.y - 1);
-        
+
         /* Code for Partie 1 is commented since Partie 2 is what is required for the rest of the project*/
-        printf("Pixel de depart: %f , %f\n", rb.x, rb.y);
-        printf("-----------\n");
+        // printf("Pixel de depart: %f , %f\n", rb.x, rb.y);
+        // printf("-----------\n");
         Point original_position = set_point(depart.x - 1, depart.y - 1);
         Robot robot;
         init_robot(&robot, rb.x, rb.y, Est);
@@ -262,9 +261,9 @@ Contour algo_contour(Image I)
         bool repeat = true;
         while (repeat)
         {
-            //Faire partie du Partie 1
-            printf("(%f , %f)\n", rb.x, rb.y);
-            ajouter_element_liste_Point(c, rb);
+            // Faire partie du Partie 1
+            // printf("(%f , %f)\n", rb.x, rb.y);
+            ajouter_element_liste_Point(&c, rb);
             avancer(&robot);
             rb = set_point(robot.x, robot.y);
             nouvelle_orientation(&robot, rb.x, rb.y, I);
@@ -273,9 +272,37 @@ Contour algo_contour(Image I)
                 repeat = false;
             }
         }
-        ajouter_element_liste_Point(c, rb);
-        //Faire du partie de Partie 1
-        printf("(%f , %f)\n", rb.x, rb.y);
+        ajouter_element_liste_Point(&c, rb);
+
+        // Managing file writing
+        // File in which will be writted the contour
+        FILE *fptr;
+
+        // use appropriate location if you are using MacOS or Linux
+        fptr = fopen(file_name, "w");
+        if (fptr == NULL)
+        {
+            printf("File Error!");
+            exit(1);
+        }
+
+        fprintf(fptr, "%d\n", countour_number);
+
+        Tableau_Point TP = sequence_points_liste_vers_tableau(c);
+        int k;
+        int nP = TP.taille;
+        fprintf(fptr, "\n");
+        fprintf(fptr, "%d\n", nP);
+        for (k = 0; k < nP; k++)
+        {
+            Point P = TP.tab[k];
+            fprintf(fptr, "%.1f %.1f\n", P.x, P.y);
+        }
+        free(TP.tab);
+
+
+        // Faire du partie de Partie 1
+        // printf("(%f , %f)\n", rb.x, rb.y);
         return c;
     }
 }

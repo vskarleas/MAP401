@@ -28,23 +28,23 @@ Liste_Point creer_liste_Point_vide()
 }
 
 /* ajouter l'�l�ment e en fin de la liste L, renvoie la liste L modifi�e */
-Liste_Point ajouter_element_liste_Point(Liste_Point L, Point e)
+void ajouter_element_liste_Point(Liste_Point *L, Point e)
 {
 	Cellule_Liste_Point *el;
 	
 	el = creer_element_liste_Point(e);
-	if (L.taille == 0)
+	if (L->taille == 0)
 	{
 		/* premier �l�ment de la liste */
-		L.first = L.last = el;
+		L->first = L->last = el;
 	}
 	else
 	{
-		L.last->suiv = el;
-		L.last = el;
+		L->last->suiv = el;
+		L->last = el;
 	}
-	L.taille++;
-	return L;
+	L->taille++;
+	return;
 }
 
 /* suppression de tous les �l�ments de la liste, renvoie la liste L vide */
@@ -116,12 +116,12 @@ void ecrire_contour(Liste_Point L)
 	Tableau_Point TP = sequence_points_liste_vers_tableau(L);
 	int k;
 	int nP = TP.taille;
-	
+	printf("%d segments\n", nP-1);
 	printf("%d points : [", nP);
 	for (k = 0; k < nP; k++)
 	{	
 		Point P = TP.tab[k]; /* r�cup�rer le point d'indice k */
-		printf(" (%5.1f,%5.1f)", P.x, P.y);
+		printf("(%5.1f,%5.1f)", P.x, P.y);
 	} 
 	printf("]\n");
 	
