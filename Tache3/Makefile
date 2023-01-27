@@ -2,6 +2,9 @@
 # Fichier Makefile 
 # UE MAP401 - DLST - UGA - 2020/2021
 #############################################################################
+#############################################################################
+# This version of make file includes tests for all the previous Taches
+#############################################################################
 # utilisation des variables internes $@ $< $^ $*
 # $@ : correspond au nom de la cible
 # $< : correspond au nom de la premiere dependance

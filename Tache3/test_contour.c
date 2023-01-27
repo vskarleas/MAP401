@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     printf("=====================\n");
     Contour k;
     k = algo_contour(I);
-    
+    ecrire_contour(k);
     return 0;
 
 }
