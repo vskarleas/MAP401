@@ -1,11 +1,13 @@
 #include <stdint.h>
 #include <string.h>
 #include<stdlib.h>
+#include <stdio.h>
 
 #include "geom2d.h"
 
 int main(int argc, char **argv)
 {
+    printf("Testing equestions of geometry in 2 axes space\n");
     //Test no 3
     Point A, B, C;
     A = set_point(1.0, -3.0);

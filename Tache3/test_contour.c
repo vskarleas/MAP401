@@ -7,6 +7,11 @@
 
 int main(int argc, char **argv)
 {
+    if (argc!=2)
+    {
+        printf("Image file is missing as argument. Please give an image path as argument and try again.\n");
+        exit(-2);
+    }
     //Test no 4
     printf("Test 4\n");
     Image I;
