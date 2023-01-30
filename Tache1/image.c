@@ -231,26 +231,23 @@ Image lire_fichier_image(char *nom_f)
 /* ecrire l'image I � l'ecran */
 void ecrire_image(Image I)
 {
-	int hauteur = I.la_hauteur_de_l_image;
-	int largeur = I.la_largeur_de_l_image;
+	int hauteur = hauteur_image(I);
+	int largeur = largeur_image(I);
 	Pixel A;
-	int id=0;
 	for (int i=1; i<=hauteur; i++)
 	{
 		for (int j=1;j<=largeur; j++)
 		{
-		A = I.pointeur_vers_le_tableau_de_pixels[id];
+		A = get_pixel_image(I, j, i);
 		switch(A)
 			{
 				case(BLANC):
 					printf("0");
 					break;
-				case(NOIR):
+				default:
 					printf("1");
 					break;
 			}
-
-			id++;
 		}
 		printf("\n");
 	}
@@ -262,10 +259,9 @@ void ecrire_image(Image I)
 
 Image negatif_image(Image I)
 {
-	int hauteur = I.la_hauteur_de_l_image;
-	int largeur = I.la_largeur_de_l_image;
+	int hauteur = hauteur_image(I);
+	int largeur = largeur_image(I);
 	Pixel A;
-	int id=0;
 
 	//Initialisation image neagtive
 	Image negative;
@@ -276,18 +272,16 @@ Image negatif_image(Image I)
 	{
 		for (int j=1;j<=largeur; j++)
 		{
-		A = I.pointeur_vers_le_tableau_de_pixels[id];
+		A = get_pixel_image(I, j, i);
 		switch(A)
 			{
 				case(BLANC):
 					set_pixel_image(negative, j, i, NOIR);
 					break;
-				case(NOIR):
+				default:
 					set_pixel_image(negative, j, i, BLANC);
 					break;
 			}
-
-			id++;
 		}
 	}
 	return negative;
