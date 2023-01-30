@@ -22,8 +22,10 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V3.2:27/01/2023 : Devided Tache3 on contour.c sections according to the requirements of the compte-rendu. The code for Part 1 is as a comment "//" and the rest is the functional code for the Part 2.
 * V3:2.1:30:01:2023 : Corrections according to the message "Il ne faut pas utiliser directement les champs de la structure Image, mais il faut utiliser les fonctions largeur_image, hauteur_image, get_pixel_image, set_pixel_image, etc ..." for Tache 1 and Tache 3 file image.c
 * V3:2.2:30:01:2023 : Automating the test for contour.c
+* V4.1:30:01:2023 : Tache 4 has been completed and all the images are now created by using the test test_postscript. In this version there was also changes to the function algo_contour . Now this function only takes an image and the file_name to print out the countour. On the same time it returns the contour. It's this function that will be changed on Tache 5 in order to write multiple contours in one file (a variable will control it)
 
 ## Sync
 
 1. 24/01/2023: Turing -> PC (V2.1)
 2. 27/01/2023: PC (V3.1) -> Turing
+3. THERE IS AN ERROR WITH turing AND FILES CAN'T BE SYNCHRONISED FROM OUR COMPUTER

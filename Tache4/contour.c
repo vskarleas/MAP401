@@ -232,6 +232,7 @@ Point trouver_pixel_depart(Image I)
     return depart;
 }
 
+//Retruns the contour and also writes the contour <file>.txt - This function will be modfied in order to write multiple contours in the <file>.txt
 Contour algo_contour(Image I, char *file_name)
 {
     // Managing specific contour
@@ -282,7 +283,7 @@ Contour algo_contour(Image I, char *file_name)
         fptr = fopen(file_name, "w");
         if (fptr == NULL)
         {
-            printf("File Error!");
+            printf("TXT File Error!");
             exit(1);
         }
 
@@ -300,9 +301,78 @@ Contour algo_contour(Image I, char *file_name)
         }
         free(TP.tab);
 
-
         // Faire du partie de Partie 1
         // printf("(%f , %f)\n", rb.x, rb.y);
         return c;
     }
+}
+
+void create_postscript(Contour c, char *file_name, int hauteur, int largeur)
+{
+    // Extension managment
+    char *no_extension = strtok(file_name, ".");
+    char *with_extension = malloc(strlen(no_extension) + 4);
+    strcpy(with_extension, no_extension);
+    strcat(with_extension, ".eps");
+
+    FILE *fptr;
+    fptr = fopen(with_extension, "w");
+    if (fptr == NULL)
+    {
+        printf("EPS File Error!");
+        exit(1);
+    }
+
+    fprintf(fptr, "%%!PS-Adobe-3.0 EPSF-3.0\n");
+    fprintf(fptr, "%%%%BoundingBox:   %d   %d   %d   %d\n", 0, 0, largeur, hauteur);
+
+    Cellule_Liste_Point *el;
+    el = c.first;
+    fprintf(fptr, "%.0f %.0f moveto ", el->data.x, el->data.y);
+    el = el->suiv;
+    while (el != NULL)
+    {
+        fprintf(fptr, "%.0f %.0f lineto ", el->data.x, el->data.y);
+        el = el->suiv;
+    }
+    fprintf(fptr, "\n");
+    fprintf(fptr, "stroke\n");
+    fprintf(fptr, "showpage\n");
+    fclose(fptr);
+    return;
+}
+
+void create_postscript_fill(Contour c, char *file_name, int hauteur, int largeur)
+{
+    // Extension managment
+    char *no_extension = strtok(file_name, ".");
+    char *with_extension = malloc(strlen(no_extension) + 4);
+    strcpy(with_extension, no_extension);
+    strcat(with_extension, ".eps");
+
+    FILE *fptr;
+    fptr = fopen(with_extension, "w");
+    if (fptr == NULL)
+    {
+        printf("EPS File Error!");
+        exit(1);
+    }
+
+    fprintf(fptr, "%%!PS-Adobe-3.0 EPSF-3.0\n");
+    fprintf(fptr, "%%%%BoundingBox:   %d   %d   %d   %d\n", 0, 0, largeur, hauteur);
+
+    Cellule_Liste_Point *el;
+    el = c.first;
+    fprintf(fptr, "%.0f %.0f moveto ", el->data.x, el->data.y);
+    el = el->suiv;
+    while (el != NULL)
+    {
+        fprintf(fptr, "%.0f %.0f lineto ", el->data.x, el->data.y);
+        el = el->suiv;
+    }
+    fprintf(fptr, "\n");
+    fprintf(fptr, "fill\n");
+    fprintf(fptr, "showpage\n");
+    fclose(fptr);
+    return;
 }

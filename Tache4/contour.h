@@ -48,4 +48,8 @@ Point trouver_pixel_depart(Image I);
 
 Contour algo_contour(Image I, char *file_name);
 
+void create_postscript(Contour c, char *file_name, int hauteur, int largeur);
+
+void create_postscript_fill(Contour c, char *file_name, int hauteur, int largeur);
+
 #endif /* _CONTOUR_H_ */
