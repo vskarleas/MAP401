@@ -21,6 +21,7 @@ Below you can find the releases of the code as well as a callendar of the latest
   * Updated files verifications on Tache1, Tache2 and Tache3 folders
 * V3.2:27/01/2023 : Devided Tache3 on contour.c sections according to the requirements of the compte-rendu. The code for Part 1 is as a comment "//" and the rest is the functional code for the Part 2.
 * V3:2.1:30:01:2023 : Corrections according to the message "Il ne faut pas utiliser directement les champs de la structure Image, mais il faut utiliser les fonctions largeur_image, hauteur_image, get_pixel_image, set_pixel_image, etc ..." for Tache 1 and Tache 3 file image.c
+* V3:2.2:30:01:2023 : Automating the test for contour.c
 
 ## Sync
 
