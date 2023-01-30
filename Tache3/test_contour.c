@@ -7,18 +7,25 @@
 
 int main(int argc, char **argv)
 {
-    if (argc!=3)
+    if (argc!=1)
     {
-        printf("Image file or/and fexit are missing as arguments. Please give the path of appropriate files and try again.\n");
+        printf("No arguments are required for this test\n");
         exit(-2);
     }
     //Test no 4
-    printf("Test 4\n");
+    printf("Starting Test 4\n");
     Image I;
-    char fichier[256];
-    char exit_file[256];
-    strcpy(fichier, argv[1]);
-    strcpy(exit_file, argv[2]);
+    printf("Identifier of the image is missing. Just pass as argument only the name of the file without any extension (pbm)\n");
+    char name[256];
+    scanf("%s", name);
+
+    char *fichier=malloc(strlen(name)+4);
+    char *exit_file=malloc(strlen(name)+4);
+    strcpy(fichier,name);
+    strcat(fichier,".pbm");
+
+    strcpy(exit_file,name);
+    strcat(exit_file,".txt");
 
     I = lire_fichier_image(fichier);
     ecrire_image(I);
