@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Debug",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": ["test1.pbm","test.txt"],
+            "args": [""],
             "cwd": "${fileDirname}",
             "preLaunchTask": "makelldb: make"
         }

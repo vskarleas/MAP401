@@ -1,0 +1,44 @@
+chat.pbm
+L: 250
+H: 140
+Nombre des segments: 880
+
+coq.pbm
+L: 700
+H: 720
+Nombre des segments: 5386
+
+elephant.pbm
+L: 800
+H: 700
+Nombre des segments: 5344
+
+gymnaste.pbm
+L: 1056
+H: 1647
+Nombre des segments: 8784
+
+image_ex_poly.pbm
+L: 4
+H: 4
+Nombre des segments: 18
+
+labyrinthe.pbm
+L: 221
+H: 201
+Nombre des segments: 44000
+
+lettreZ.pbm
+L: 600
+H: 1029
+Nombre des segments: 9396
+
+map401.pbm
+L: 830
+H: 300
+Nombre des segments: 8072
+
+tete.pbm
+L: 1252
+H: 1252
+Nombre des segments: 8136
