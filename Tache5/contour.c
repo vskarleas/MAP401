@@ -269,15 +269,15 @@ Image mask_image(Image I)
 bool image_blache(Image I)
 {
     Pixel A;
-    for (int i =0; i<largeur_image(I); i++)
+    for (int i = 0; i < largeur_image(I); i++)
     {
-        for (int h =0; h<hauteur_image(I); h++)
+        for (int h = 0; h < hauteur_image(I); h++)
         {
             A = get_pixel_image(I, i, h);
             switch (A)
             {
             case (NOIR):
-                return false;
+                return false; // false si et seulment si n'est pas blance
             default:
                 break;
             }
@@ -286,6 +286,7 @@ bool image_blache(Image I)
     return true;
 }
 
+// Retruns the contour and also writes the contour <file>.txt - This function will be modfied in order to write multiple contours in the <file>.tx
 Contour algo_contour(Image I, char *file_name)
 {
     // Managing specific contour
@@ -360,7 +361,7 @@ Contour algo_contour(Image I, char *file_name)
     }
 }
 
-// Retruns the contour and also writes the contour <file>.txt - This function will be modfied in order to write multiple contours in the <file>.txt
+// Returns the liste of countours for an image
 Liste_Contours algo_contours(Image I)
 {
     Liste_Contours liste;
@@ -370,7 +371,6 @@ Liste_Contours algo_contours(Image I)
     mask = mask_image(I);
     while (!image_blache(mask))
     {
-        Point avant;
         Point depart = trouver_pixel_depart(mask);
         Point rb = set_point(depart.x - 1, depart.y - 1);
 
@@ -385,12 +385,26 @@ Liste_Contours algo_contours(Image I)
         while (repeat)
         {
             ajouter_element_liste_Point(&c, rb);
+            // Retrouver le pixel par rapport l'orientation du robot
+            switch (robot.o)
+            {
+            case (Est):
+                set_pixel_image(mask, robot.x + 1, robot.y + 1, BLANC);
+                break;
+            case (Nord):
+                set_pixel_image(mask, robot.x + 1, robot.y, BLANC);
+                break;
+            case (Sud):
+                set_pixel_image(mask, robot.x, robot.y, BLANC);
+                break;
+            case (Ouest):
+                set_pixel_image(mask, robot.x, robot.y + 1, BLANC);
+                break;
+            }
             avancer(&robot);
             rb = set_point(robot.x, robot.y);
-            avant.x = rb.x;
-            avant.y = rb.y;
             nouvelle_orientation(&robot, rb.x, rb.y, I);
-            set_pixel_image(mask, avant.x, avant.y, BLANC);
+
             if ((robot.o == Est) && (original_position.x == rb.x) && (original_position.y == rb.y))
             {
                 repeat = false;
@@ -400,6 +414,72 @@ Liste_Contours algo_contours(Image I)
         ajouter_element_liste_Contours(&liste, c);
     }
     return liste;
+}
+
+void ecrire_fichier_contours(Liste_Contours c, char *file_name)
+{
+    FILE *fptr;
+    fptr = fopen(file_name, "w");
+    if (fptr == NULL)
+    {
+        printf("TXT File Error!");
+        exit(1);
+    }
+    int id = 0;
+    Cellule_Liste_Contours *el;
+    el = c.first;
+    if (el == NULL)
+    {
+        return;
+    }
+    else
+    {
+        while (el != NULL)
+        {
+            id++;
+            fprintf(fptr, "%d\n", id);
+            Tableau_Point TP = sequence_points_liste_vers_tableau(el->data);
+            int k;
+            int nP = TP.taille;
+            fprintf(fptr, "\n");
+            fprintf(fptr, "%d\n", nP);
+            for (k = 0; k < nP; k++)
+            {
+                Point P = TP.tab[k];
+                fprintf(fptr, "%.1f %.1f\n", P.x, P.y);
+            }
+            free(TP.tab);
+            fprintf(fptr, "\n");
+            fprintf(fptr, "\n");
+            el = el->suiv;
+        }
+    }
+}
+
+void contours_data(Liste_Contours c)
+{
+    Cellule_Liste_Contours *el;
+    el = c.first;
+    int nb =0;
+    int nb_points;
+    int segments=0;
+    while(el != NULL)
+    {
+        nb++;
+        nb_points =0;
+        Cellule_Liste_Point *e;
+        e = (el->data).first;
+        while(e != NULL)
+        {
+            nb_points++;
+            e = e->suiv;
+        }
+        segments = segments +(nb_points-1);
+        el = el->suiv;
+    }
+    printf("Nombre des contours: %d\n", nb);
+    printf("Nombre des segments totals: %d\n", segments);
+    printf("\n");
 }
 
 void create_postscript(Contour c, char *file_name, int hauteur, int largeur)

@@ -24,7 +24,8 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V3:2.2:30:01:2023 : Automating the test for contour.c
 * V4.1:30:01:2023 : Tache 4 has been completed and all the images are now created by using the test test_postscript. In this version there was also changes to the function algo_contour . Now this function only takes an image and the file_name to print out the countour. On the same time it returns the contour. It's this function that will be changed on Tache 5 in order to write multiple contours in one file (a variable will control it)
 * V4.2: 31:01:2023 : Correction de la fonction de creation des images EPS pour qu'il ne sont pas affiché à l'invers
-* V5.1 : Commence le Tache 5. Il ya des correctiosn qu'on doit faire avec le while dans la fonction algo_contours
+* V5.1:31:01:2023 : Commence le Tache 5. Il ya des correctiosn qu'on doit faire avec le while dans la fonction algo_contours
+* V5.2:31:01:2023 : Part 1 of Task 5 has been completed and any errors has been fixed. The program was remodified to better server and accelerate the algorithms
 
 ## Sync
 

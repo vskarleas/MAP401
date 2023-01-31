@@ -55,6 +55,10 @@ Contour algo_contour(Image I, char *file_name);
 
 Liste_Contours algo_contours(Image I);
 
+void ecrire_fichier_contours(Liste_Contours c, char *file_name);
+
+void contours_data(Liste_Contours c);
+
 void create_postscript(Contour c, char *file_name, int hauteur, int largeur);
 
 void create_postscript_fill(Contour c, char *file_name, int hauteur, int largeur);
