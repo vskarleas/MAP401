@@ -63,4 +63,6 @@ void create_postscript(Contour c, char *file_name, int hauteur, int largeur);
 
 void create_postscript_fill(Contour c, char *file_name, int hauteur, int largeur);
 
+void create_postscript_contours(Liste_Contours c, char *file_name, int hauteur, int largeur);
+
 #endif /* _CONTOUR_H_ */

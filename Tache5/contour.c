@@ -460,21 +460,21 @@ void contours_data(Liste_Contours c)
 {
     Cellule_Liste_Contours *el;
     el = c.first;
-    int nb =0;
+    int nb = 0;
     int nb_points;
-    int segments=0;
-    while(el != NULL)
+    int segments = 0;
+    while (el != NULL)
     {
         nb++;
-        nb_points =0;
+        nb_points = 0;
         Cellule_Liste_Point *e;
         e = (el->data).first;
-        while(e != NULL)
+        while (e != NULL)
         {
             nb_points++;
             e = e->suiv;
         }
-        segments = segments +(nb_points-1);
+        segments = segments + (nb_points - 1);
         el = el->suiv;
     }
     printf("Nombre des contours: %d\n", nb);
@@ -547,6 +547,49 @@ void create_postscript_fill(Contour c, char *file_name, int hauteur, int largeur
     }
     fprintf(fptr, "\n");
     fprintf(fptr, "fill\n");
+    fprintf(fptr, "showpage\n");
+    fclose(fptr);
+    return;
+}
+
+void create_postscript_contours(Liste_Contours c, char *file_name, int hauteur, int largeur) //Mode remplisage uniquement
+{
+    // Extension managment
+    char *no_extension = strtok(file_name, ".");
+    char *with_extension = malloc(strlen(no_extension) + 4);
+    strcpy(with_extension, no_extension);
+    strcat(with_extension, ".eps"); // concantenation
+
+    FILE *fptr;
+    fptr = fopen(with_extension, "w");
+    if (fptr == NULL)
+    {
+        printf("EPS File Error!");
+        exit(1);
+    }
+
+    fprintf(fptr, "%%!PS-Adobe-3.0 EPSF-3.0\n");
+    fprintf(fptr, "%%%%BoundingBox:   %d   %d   %d   %d\n", 0, 0, largeur, hauteur);
+    fprintf(fptr, "\n");
+    Cellule_Liste_Contours *al;
+    al = c.first;
+    while (al != NULL)
+    {
+        Cellule_Liste_Point *el;
+        el = (al->data).first;
+        fprintf(fptr, "%.0f %.0f moveto ", el->data.x, hauteur - el->data.y);
+        el = el->suiv;
+        while (el != NULL)
+        {
+            fprintf(fptr, "%.0f %.0f lineto ", el->data.x, hauteur - el->data.y);
+            el = el->suiv;
+        }
+        fprintf(fptr, "\n");
+        fprintf(fptr, "fill\n");
+        fprintf(fptr, "\n");
+        al = al->suiv;
+    }
+    fprintf(fptr, "\n");
     fprintf(fptr, "showpage\n");
     fclose(fptr);
     return;

@@ -42,6 +42,7 @@ int main(int argc, char **argv)
     liste = algo_contours(I);
     ecrire_fichier_contours(liste, exit_file);
     contours_data(liste);
+    create_postscript_contours(liste, exit_file, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
     printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
     printf("=====================\n");
