@@ -200,8 +200,8 @@ void nouvelle_orientation(Robot *r, int x, int y, Image I)
 
 Point trouver_pixel_depart(Image I)
 {
-    int hauteur = I.la_hauteur_de_l_image;
-    int largeur = I.la_largeur_de_l_image;
+    int hauteur = hauteur_image(I);
+    int largeur = largeur_image(I);
     Point depart;
     Pixel voisin;
     Pixel A;

@@ -200,8 +200,8 @@ void nouvelle_orientation(Robot *r, int x, int y, Image I)
 
 Point trouver_pixel_depart(Image I)
 {
-    int hauteur = I.la_hauteur_de_l_image;
-    int largeur = I.la_largeur_de_l_image;
+    int hauteur = hauteur_image(I);
+    int largeur = largeur_image(I);
     Point depart;
     Pixel voisin;
     Pixel A;
@@ -313,7 +313,7 @@ void create_postscript(Contour c, char *file_name, int hauteur, int largeur)
     char *no_extension = strtok(file_name, ".");
     char *with_extension = malloc(strlen(no_extension) + 4);
     strcpy(with_extension, no_extension);
-    strcat(with_extension, ".eps");
+    strcat(with_extension, ".eps"); //concantenation
 
     FILE *fptr;
     fptr = fopen(with_extension, "w");
@@ -328,11 +328,11 @@ void create_postscript(Contour c, char *file_name, int hauteur, int largeur)
 
     Cellule_Liste_Point *el;
     el = c.first;
-    fprintf(fptr, "%.0f %.0f moveto ", el->data.x, el->data.y);
+    fprintf(fptr, "%.0f %.0f moveto ", el->data.x, hauteur-el->data.y);
     el = el->suiv;
     while (el != NULL)
     {
-        fprintf(fptr, "%.0f %.0f lineto ", el->data.x, el->data.y);
+        fprintf(fptr, "%.0f %.0f lineto ", el->data.x, hauteur-el->data.y);
         el = el->suiv;
     }
     fprintf(fptr, "\n");
@@ -363,11 +363,11 @@ void create_postscript_fill(Contour c, char *file_name, int hauteur, int largeur
 
     Cellule_Liste_Point *el;
     el = c.first;
-    fprintf(fptr, "%.0f %.0f moveto ", el->data.x, el->data.y);
+    fprintf(fptr, "%.0f %.0f moveto ", el->data.x, hauteur-el->data.y);
     el = el->suiv;
     while (el != NULL)
     {
-        fprintf(fptr, "%.0f %.0f lineto ", el->data.x, el->data.y);
+        fprintf(fptr, "%.0f %.0f lineto ", el->data.x, hauteur-el->data.y);
         el = el->suiv;
     }
     fprintf(fptr, "\n");
