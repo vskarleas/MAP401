@@ -26,10 +26,11 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V4.2: 31:01:2023 : Correction de la fonction de creation des images EPS pour qu'il ne sont pas affiché à l'invers
 * V5.1:31:01:2023 : Commence le Tache 5. Il ya des correctiosn qu'on doit faire avec le while dans la fonction algo_contours
 * V5.2:31:01:2023 : Part 1 of Task 5 has been completed and any errors has been fixed. The program was remodified to better server and accelerate the algorithms.
-* V5.3:31:01:2023 : All the task file has been compleetd. You can find the files that were asked to be created in the corresponding folder of
+* V5.3:31:01:2023 : All the task file has been compleetd. You can find the files that were asked to be created in the corresponding folder of Tache5
 
 ## Sync
 
 1. 24/01/2023: Turing -> PC (V2.1)
-2. 27/01/2023: PC (V3.1) -> Turing
-3. THERE IS AN ERROR WITH turing AND FILES CAN'T BE SYNCHRONISED FROM OUR COMPUTER
+2. 27/01/2023: PC (V3.1) -> Turing (Links for Tache 1 and 2 sent to prof)
+3. 31/01/2023: PC (V4.2) -> Turing (Links for Tache 3 and 4 sent )
+4. 31/01/2023: PC (V5.3) -> Turing
