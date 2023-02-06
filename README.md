@@ -27,6 +27,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V5.1:31:01:2023 : Commence le Tache 5. Il ya des correctiosn qu'on doit faire avec le while dans la fonction algo_contours
 * V5.2:31:01:2023 : Part 1 of Task 5 has been completed and any errors has been fixed. The program was remodified to better server and accelerate the algorithms.
 * V5.3:31:01:2023 : All the task file has been compleetd. You can find the files that were asked to be created in the corresponding folder of Tache5
+* V5.4:06/02/2023 : Correction par apport l'email de 6 fevrier 2023
 
 ## Sync
 
