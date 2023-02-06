@@ -511,6 +511,7 @@ void create_postscript(Contour c, char *file_name, int hauteur, int largeur)
         el = el->suiv;
     }
     fprintf(fptr, "\n");
+    fprintf(fptr, "0.0 setlinewidth\n");
     fprintf(fptr, "stroke\n");
     fprintf(fptr, "showpage\n");
     fclose(fptr);
