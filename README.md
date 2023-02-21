@@ -37,7 +37,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 3. 31/01/2023: PC (V4.2) -> Turing (Links for Tache 3 and 4 sent to prof)
 4. 31/01/2023: PC (V5.3) -> Turing
 5. 21/02/2023: Turing -> PC (Images)
-6. 21/02/2023: PC(V6) -> Turing (Link for Tache 6 sent to )
+6. 21/02/2023: PC(V6) -> Turing (Link for Tache 6 sent to prof)
 
 ## Tests Programmes
 
