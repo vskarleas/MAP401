@@ -589,3 +589,52 @@ void create_postscript_contours(Liste_Contours c, char *file_name, int hauteur, 
     fclose(fptr);
     return;
 }
+
+Contour simplification_douglas_peucker(Contour C, int j1, int j2,double d)
+{
+    Tableau_Point T = sequence_points_liste_vers_tableau(C);
+
+    //Segment creation
+    Segment S;
+    S.A = T.tab[j1];
+    S.B = T.tab[j2];
+
+    //Variable initialisations
+    double distance;
+    double max_distance = 0;
+    int far_away;
+
+
+    for (int i=j1+1; i<=j2; i++)
+    {
+        distance = distance_point_segment(T.tab[i], S);
+        if (max_distance < distance)
+        {
+            max_distance = distance;
+            far_away = i;
+        }
+    }
+    
+    if (max_distance <= d)
+    {
+        Contour L ;
+        L = creer_liste_Point_vide();
+        ajouter_element_liste_Point(&L, S.A);
+        ajouter_element_liste_Point(&L, S.B);
+        return L;
+    }
+    else 
+    {
+        
+        Contour L1;
+        L1 = creer_liste_Point_vide();
+        L1 = simplification_douglas_peucker(C, j1, far_away, d);
+
+        Contour L2;
+        L2 = creer_liste_Point_vide();
+        L2 = simplification_douglas_peucker(C, far_away, j2, d);
+
+        return concatener_liste_Point(L1, L2);
+    }
+    
+}

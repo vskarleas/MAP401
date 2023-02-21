@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geom test_contour test_postscript test_mask
+EXECUTABLES = test_image test_geom test_contour test_postscript test_mask test_simplification
 
 
 #############################################################################
@@ -128,6 +128,13 @@ test_mask.o : test_mask.c contour.h image.h
 	@echo "Compilation du module test_mask"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
+
+test_simplification.o : test_simplification.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
 		
 		
 ########################################################
@@ -162,6 +169,13 @@ test_postscript : test_postscript.o contour.o image.o geom2d.o sequence_point.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 test_mask : test_mask.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_simplification : test_simplification.o contour.o image.o geom2d.o sequence_point.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

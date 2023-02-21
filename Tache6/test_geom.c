@@ -66,9 +66,13 @@ int main(int argc, char **argv)
     //Test no 8 (Tache 6 partie 1)
     printf("Test distance point-segments Tache 6\n");
     Segment S;
-    S.A = set_point(0.0, 4.0);
-    S.B = set_point(0.0, 0.0);
-    Point P1 = set_point(0.00, 5.0);
+    S.A = set_point(0.0, 6.0);
+    S.B = set_point(0.0, 6.0);
+    printf("Points utilise dans ce test:\n");
+    printf("A:(%f,%f)\n",S.A.x,S.A.y);
+    printf("B:(%f,%f)\n",S.B.x,S.B.y);
+    printf("==========\n");
+    Point P1 = set_point(0.00, 6.0);
     double distance_seg = distance_point_segment(P1, S);
     printf("%f distance point-segment\n\n", distance_seg);
 }

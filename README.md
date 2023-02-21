@@ -25,9 +25,10 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V4.1:30:01:2023 : Tache 4 has been completed and all the images are now created by using the test test_postscript. In this version there was also changes to the function algo_contour . Now this function only takes an image and the file_name to print out the countour. On the same time it returns the contour. It's this function that will be changed on Tache 5 in order to write multiple contours in one file (a variable will control it)
 * V4.2: 31:01:2023 : Correction de la fonction de creation des images EPS pour qu'il ne sont pas affiché à l'invers
 * V5.1:31:01:2023 : Commence le Tache 5. Il ya des correctiosn qu'on doit faire avec le while dans la fonction algo_contours
-* V5.2:31:01:2023 : Part 1 of Task 5 has been completed and any errors has been fixed. The program was remodified to better server and accelerate the algorithms.
+* V5.2:31:01:2023 : Part 1 of Task 5 has been completed and any errors has been fixed. The program was remodified to better serve and accelerate the algorithms.
 * V5.3:31:01:2023 : All the task file has been compleetd. You can find the files that were asked to be created in the corresponding folder of Tache5
 * V5.4:06/02/2023 : Correction par apport l'email de 6 fevrier 2023
+* V6 : 21/2/2023: Tache 6 completed and added for tests on Compte Rendu Tache 6.1
 
 ## Sync
 
@@ -35,3 +36,14 @@ Below you can find the releases of the code as well as a callendar of the latest
 2. 27/01/2023: PC (V3.1) -> Turing (Links for Tache 1 and 2 sent to prof)
 3. 31/01/2023: PC (V4.2) -> Turing (Links for Tache 3 and 4 sent to prof)
 4. 31/01/2023: PC (V5.3) -> Turing
+5. 21/02/2023: Turing -> PC (Images)
+6. 21/02/2023: PC(V6) -> Turing (Link for Tache 6 sent to )
+
+## Tests Programmes
+
+* Tache1: test_image
+* Tache2: test_geom
+* Tache3: test_contour
+* Tache4: test_postscript
+* Tache5: test_mask
+* Tache6: test_simplification

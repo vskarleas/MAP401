@@ -70,7 +70,7 @@ double distance_point_segment(Point P1, Segment S1)
 {
     if ((S1.A.x == S1.B.x) && (S1.A.y == S1.B.y))
     {
-        return distance(P1, S1.A);
+        return distance(P1, S1.B);
     }
     else 
     {

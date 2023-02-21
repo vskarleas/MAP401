@@ -65,4 +65,7 @@ void create_postscript_fill(Contour c, char *file_name, int hauteur, int largeur
 
 void create_postscript_contours(Liste_Contours c, char *file_name, int hauteur, int largeur);
 
+
+Contour simplification_douglas_peucker(Contour C, int j1, int j2, double d);
+
 #endif /* _CONTOUR_H_ */
