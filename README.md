@@ -31,6 +31,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V6 : 21/2/2023: Tache 6 completed and added for tests on Compte Rendu Tache 6.1
 * V6.3: 28/2/2023: Correction of affichage for the number of segments for Tache6.2
 * V7: 28/2/2023: Started Tache7 - Partie 1
+* V7.1 : 28/2/2023: Completed Tache7 - Partie 1 (fixed errors with file EPS and tested the exported im)
 
 ## Sync
 
