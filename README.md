@@ -29,7 +29,8 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V5.3:31:01:2023 : All the task file has been compleetd. You can find the files that were asked to be created in the corresponding folder of Tache5
 * V5.4:06/02/2023 : Correction par apport l'email de 6 fevrier 2023
 * V6 : 21/2/2023: Tache 6 completed and added for tests on Compte Rendu Tache 6.1
-* V^.3: 28/2/2023: Correction of affichage for the number of segments for Tache6.2
+* V6.3: 28/2/2023: Correction of affichage for the number of segments for Tache6.2
+* V7: 28/2/2023: Started Tache7 - Partie 1
 
 ## Sync
 
@@ -48,3 +49,4 @@ Below you can find the releases of the code as well as a callendar of the latest
 * Tache4: test_postscript
 * Tache5: test_mask
 * Tache6: test_simplification
+* Tache7: test_approx & test_degree2
