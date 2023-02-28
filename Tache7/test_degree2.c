@@ -24,6 +24,14 @@ int main(int argc, char **argv)
     char *exit_file2=malloc(strlen(name)+17);
     strcpy(exit_file2,name);
     strcat(exit_file2,"-deg2-taille2.txt");
+
+    char *exit_file10=malloc(strlen(name)+18);
+    strcpy(exit_file10,name);
+    strcat(exit_file10,"-deg2-taille10.txt");
+
+    char *exit_file30=malloc(strlen(name)+18);
+    strcpy(exit_file30,name);
+    strcat(exit_file30,"-deg2-taille30.txt");
     
     Image I;
     I = lire_fichier_image(fichier);
@@ -58,7 +66,7 @@ int main(int argc, char **argv)
 
     printf("\n");
 
-    printf("d = 2\n");
+    printf("d = 3\n");
     Liste_Contours simple2;
     simple2 = creer_liste_Contours_vide();
     Contour el2;
@@ -69,7 +77,7 @@ int main(int argc, char **argv)
     while (al2 != NULL)
     {
         Tableau_Point T2 = sequence_points_liste_vers_tableau(al2->data);
-        el2 = simplification_douglas_peucker_bezier2(al2->data, 0,(T2.taille)-1, 2);
+        el2 = simplification_douglas_peucker_bezier2(al2->data, 0,(T2.taille)-1, 3);
         ajouter_element_liste_Contours(&simple2, el2);
         al2 = al2->suiv;
     }
@@ -78,6 +86,62 @@ int main(int argc, char **argv)
     ecrire_fichier_contours(simple2, exit_file2);
     contours_data_simplification(simple2);
     create_postscript_contours_bezier2(simple2, exit_file2, hauteur_image(I), largeur_image(I)); //Mode remplisage only
+
+    printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
+    printf("=====================\n");
+
+    printf("================================================");
+
+    printf("\n");
+
+    printf("d = 10\n");
+    Liste_Contours simple10;
+    simple10 = creer_liste_Contours_vide();
+    Contour el10;
+    el10 = creer_liste_Point_vide();
+
+    Cellule_Liste_Contours *al10;
+    al10 = liste.first;
+    while (al10 != NULL)
+    {
+        Tableau_Point T2 = sequence_points_liste_vers_tableau(al10->data);
+        el10 = simplification_douglas_peucker_bezier2(al10->data, 0,(T2.taille)-1, 10);
+        ajouter_element_liste_Contours(&simple10, el10);
+        al10 = al10->suiv;
+    }
+
+
+    ecrire_fichier_contours(simple10, exit_file10);
+    contours_data_simplification(simple10);
+    create_postscript_contours_bezier2(simple10, exit_file10, hauteur_image(I), largeur_image(I)); //Mode remplisage only
+
+    printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
+    printf("=====================\n");
+
+    printf("================================================");
+
+    printf("\n");
+
+    printf("d = 30\n");
+    Liste_Contours simple30;
+    simple30 = creer_liste_Contours_vide();
+    Contour el30;
+    el2 = creer_liste_Point_vide();
+
+    Cellule_Liste_Contours *al30;
+    al30 = liste.first;
+    while (al30 != NULL)
+    {
+        Tableau_Point T2 = sequence_points_liste_vers_tableau(al30->data);
+        el30 = simplification_douglas_peucker_bezier2(al30->data, 0,(T2.taille)-1, 30);
+        ajouter_element_liste_Contours(&simple30, el30);
+        al30 = al30->suiv;
+    }
+
+
+    ecrire_fichier_contours(simple30, exit_file30);
+    contours_data_simplification(simple30);
+    create_postscript_contours_bezier2(simple30, exit_file30, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
     printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
     printf("=====================\n");

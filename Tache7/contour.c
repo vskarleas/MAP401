@@ -876,24 +876,31 @@ void create_postscript_contours_bezier2(Liste_Contours c, char *file_name, int h
     {
         Cellule_Liste_Point *el;
         el = (al->data).first;
+        Bezier3 b3;
+        Bezier2 b2;
+        b2.A = el->data;
+        el = el->suiv;
+        b2.B = el->data;
+        el = el->suiv;
+        b2.C = el->data;
+        b3 = conversion_bezier2_to_bezier3(b2);
+        fprintf(fptr, "%.0f %.0f moveto ", b3.A.x, hauteur - b3.A.y);
+        el = el->suiv;
         while (el != NULL)
         {
-            Bezier3 b3;
-            Bezier2 b2;
             b2.A = el->data;
             el = el->suiv;
             b2.B = el->data;
             el = el->suiv;
             b2.C = el->data;
             b3 = conversion_bezier2_to_bezier3(b2);
-            fprintf(fptr, "%.0f %.0f moveto ", b3.A.x, hauteur - b3.A.y);
-            fprintf(fptr, "%.0f %.0f %.0f %.0f %.0f %.0f ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
+            fprintf(fptr, "%.0f %.0f %.0f %.0f %.0f %.0f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
             el = el->suiv;
         }
         fprintf(fptr, "\n");
         al = al->suiv;
     }
-    fprintf(fptr, "stroke\n");
+    fprintf(fptr, "fill\n");
         fprintf(fptr, "\n");
     fprintf(fptr, "\n");
     fprintf(fptr, "showpage\n");
