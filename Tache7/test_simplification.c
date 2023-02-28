@@ -24,6 +24,10 @@ int main(int argc, char **argv)
     char *exit_file2=malloc(strlen(name)+17);
     strcpy(exit_file2,name);
     strcat(exit_file2,"-simp-taille2.txt");
+
+    char *exit_file3=malloc(strlen(name)+4);
+    strcpy(exit_file3,name);
+    strcat(exit_file3,".txt");
     
     Image I;
     I = lire_fichier_image(fichier);
@@ -79,6 +83,30 @@ int main(int argc, char **argv)
     ecrire_fichier_contours(simple2, exit_file2);
     contours_data_simplification(simple2);
     create_postscript_contours(simple2, exit_file2, hauteur_image(I), largeur_image(I)); //Mode remplisage only
+
+    printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
+    printf("=====================\n");
+
+    printf("Original file\n");
+    Liste_Contours simple3;
+    simple3 = creer_liste_Contours_vide();
+    Contour el3;
+    el3 = creer_liste_Point_vide();
+
+    Cellule_Liste_Contours *al3;
+    al3 = liste.first;
+    while (al3 != NULL)
+    {
+        Tableau_Point T3 = sequence_points_liste_vers_tableau(al3->data);
+        el3 = simplification_douglas_peucker(al3->data, 0,(T3.taille)-1, 0);
+        ajouter_element_liste_Contours(&simple3, el3);
+        al3 = al3->suiv;
+    }
+
+
+    ecrire_fichier_contours(simple3, exit_file3);
+    contours_data_simplification(simple3);
+    create_postscript_contours(simple3, exit_file3, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
     printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
     printf("=====================\n");

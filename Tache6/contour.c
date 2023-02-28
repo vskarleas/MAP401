@@ -494,11 +494,11 @@ void contours_data_simplification(Liste_Contours c)
             nb_points++;
             e = e->suiv;
         }
-        segments = segments + (nb_points);
+        segments = segments + nb_points;
         el = el->suiv;
     }
     printf("Nombre des contours: %d\n", nb);
-    printf("Nombre des segments totals: %d\n", segments/2);
+    printf("Nombre des segments totals: %d\n", (segments/2));
     printf("\n");
 }
 

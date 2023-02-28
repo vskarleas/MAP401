@@ -61,6 +61,8 @@ void contours_data(Liste_Contours c);
 
 void contours_data_simplification(Liste_Contours c);
 
+void contours_data_bezier(Liste_Contours c);
+
 void create_postscript(Contour c, char *file_name, int hauteur, int largeur);
 
 void create_postscript_fill(Contour c, char *file_name, int hauteur, int largeur);

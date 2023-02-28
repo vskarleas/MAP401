@@ -494,11 +494,36 @@ void contours_data_simplification(Liste_Contours c)
             nb_points++;
             e = e->suiv;
         }
-        segments = segments + (nb_points - 1);
+        segments = segments + nb_points;
         el = el->suiv;
     }
     printf("Nombre des contours: %d\n", nb);
     printf("Nombre des segments totals: %d\n", segments/2);
+    printf("\n");
+}
+
+void contours_data_bezier(Liste_Contours c)
+{
+    Cellule_Liste_Contours *el;
+    el = c.first;
+    int nb = 0;
+    int nb_beziers = 0;
+    while (el != NULL)
+    {
+        nb++;
+        Cellule_Liste_Point *e;
+        e = (el->data).first;
+        while (e != NULL)
+        {
+            e = e->suiv;
+            e = e->suiv;
+            e = e->suiv;
+            nb_beziers++;
+        }
+        el = el->suiv;
+    }
+    printf("Nombre des contours: %d\n", nb);
+    printf("Nombre des bezier totals: %d\n", nb_beziers);
     printf("\n");
 }
 
@@ -784,6 +809,7 @@ Bezier2 approx_bezier2(Contour c, int j1, int j2)
 
 }
 
+//FIX THIS
 double distance_point_bezier2(Point P1, Bezier2 b2, double ti)
 {
     double result;
@@ -897,6 +923,7 @@ void create_postscript_contours_bezier2(Liste_Contours c, char *file_name, int h
             fprintf(fptr, "%.0f %.0f %.0f %.0f %.0f %.0f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
             el = el->suiv;
         }
+        fprintf(fptr, "\n0 0 1 setrgbcolor 2.0 setlinewidth");
         fprintf(fptr, "\n");
         al = al->suiv;
     }

@@ -6,12 +6,12 @@ Nombre des segments totals: 115564
 
 d = 1
 Nombre des contours: 313
-Nombre des segments totals: 13032
+Nombre des segments totals: 13189
 
 ================================================
 d = 2
 Nombre des contours: 313
-Nombre des segments totals: 4124
+Nombre des segments totals: 4281
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -23,12 +23,12 @@ Nombre des segments totals: 73444
 
 d = 1
 Nombre des contours: 258
-Nombre des segments totals: 5206
+Nombre des segments totals: 5335
 
 ================================================
 d = 2
 Nombre des contours: 258
-Nombre des segments totals: 2584
+Nombre des segments totals: 2713
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -40,12 +40,12 @@ Nombre des segments totals: 32002
 
 d = 1
 Nombre des contours: 59
-Nombre des segments totals: 3127
+Nombre des segments totals: 3157
 
 ================================================
 d = 2
 Nombre des contours: 59
-Nombre des segments totals: 1351
+Nombre des segments totals: 1381
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -57,12 +57,12 @@ Nombre des segments totals: 231284
 
 d = 1
 Nombre des contours: 543
-Nombre des segments totals: 26300
+Nombre des segments totals: 26572
 
 ================================================
 d = 2
 Nombre des contours: 543
-Nombre des segments totals: 12818
+Nombre des segments totals: 13090
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -74,12 +74,12 @@ Nombre des segments totals: 488
 
 d = 1
 Nombre des contours: 3
-Nombre des segments totals: 66
+Nombre des segments totals: 67
 
 ================================================
 d = 2
 Nombre des contours: 3
-Nombre des segments totals: 42
+Nombre des segments totals: 43
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -91,9 +91,9 @@ Nombre des segments totals: 18212
 
 d = 1
 Nombre des contours: 140
-Nombre des segments totals: 1843
+Nombre des segments totals: 1913
 
 ================================================
 d = 2
 Nombre des contours: 140
-Nombre des segments totals: 967
+Nombre des segments totals: 1037

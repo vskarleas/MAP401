@@ -60,7 +60,7 @@ int main(int argc, char **argv)
     }
 
     ecrire_fichier_contours(simple, exit_file);
-    contours_data_simplification(simple);
+    contours_data_bezier(simple);
     create_postscript_contours_bezier2(simple, exit_file, hauteur_image(I), largeur_image(I)); //Mode remplisage only
     printf("================================================");
 
@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 
 
     ecrire_fichier_contours(simple2, exit_file2);
-    contours_data_simplification(simple2);
+    contours_data_bezier(simple2);
     create_postscript_contours_bezier2(simple2, exit_file2, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
     printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
@@ -112,7 +112,7 @@ int main(int argc, char **argv)
 
 
     ecrire_fichier_contours(simple10, exit_file10);
-    contours_data_simplification(simple10);
+    contours_data_bezier(simple10);
     create_postscript_contours_bezier2(simple10, exit_file10, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
     printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
@@ -140,7 +140,7 @@ int main(int argc, char **argv)
 
 
     ecrire_fichier_contours(simple30, exit_file30);
-    contours_data_simplification(simple30);
+    contours_data_bezier(simple30);
     create_postscript_contours_bezier2(simple30, exit_file30, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
     printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
