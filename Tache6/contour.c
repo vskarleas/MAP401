@@ -476,6 +476,32 @@ void contours_data(Liste_Contours c)
     printf("\n");
 }
 
+void contours_data_simplification(Liste_Contours c)
+{
+    Cellule_Liste_Contours *el;
+    el = c.first;
+    int nb = 0;
+    int nb_points;
+    int segments = 0;
+    while (el != NULL)
+    {
+        nb++;
+        nb_points = 0;
+        Cellule_Liste_Point *e;
+        e = (el->data).first;
+        while (e != NULL)
+        {
+            nb_points++;
+            e = e->suiv;
+        }
+        segments = segments + (nb_points - 1);
+        el = el->suiv;
+    }
+    printf("Nombre des contours: %d\n", nb);
+    printf("Nombre des segments totals: %d\n", segments/2);
+    printf("\n");
+}
+
 void create_postscript(Contour c, char *file_name, int hauteur, int largeur)
 {
     // Extension managment
@@ -605,7 +631,7 @@ Contour simplification_douglas_peucker(Contour C, int j1, int j2,double d)
     int far_away;
 
 
-    for (int i=j1+1; i<=j2; i++)
+    for (int i=j1+1; i<j2; i++)
     {
         distance = distance_point_segment(T.tab[i], S);
         if (max_distance < distance)

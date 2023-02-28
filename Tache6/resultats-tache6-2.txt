@@ -1,15 +1,17 @@
-elephant-gotlib
+Elephant-gotlib 
 Nombre des contours: 313
 Nombre des segments totals: 115564
 
+
+
 d = 1
 Nombre des contours: 313
-Nombre des segments totals: 26065
+Nombre des segments totals: 13032
 
 ================================================
 d = 2
 Nombre des contours: 313
-Nombre des segments totals: 8249
+Nombre des segments totals: 4124
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -21,12 +23,12 @@ Nombre des segments totals: 73444
 
 d = 1
 Nombre des contours: 258
-Nombre des segments totals: 10412
+Nombre des segments totals: 5206
 
 ================================================
 d = 2
 Nombre des contours: 258
-Nombre des segments totals: 5168
+Nombre des segments totals: 2584
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -38,12 +40,12 @@ Nombre des segments totals: 32002
 
 d = 1
 Nombre des contours: 59
-Nombre des segments totals: 6255
+Nombre des segments totals: 3127
 
 ================================================
 d = 2
 Nombre des contours: 59
-Nombre des segments totals: 2703
+Nombre des segments totals: 1351
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -55,12 +57,12 @@ Nombre des segments totals: 231284
 
 d = 1
 Nombre des contours: 543
-Nombre des segments totals: 52601
+Nombre des segments totals: 26300
 
 ================================================
 d = 2
 Nombre des contours: 543
-Nombre des segments totals: 25637
+Nombre des segments totals: 12818
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -72,12 +74,12 @@ Nombre des segments totals: 488
 
 d = 1
 Nombre des contours: 3
-Nombre des segments totals: 133
+Nombre des segments totals: 66
 
 ================================================
 d = 2
 Nombre des contours: 3
-Nombre des segments totals: 85
+Nombre des segments totals: 42
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -89,9 +91,9 @@ Nombre des segments totals: 18212
 
 d = 1
 Nombre des contours: 140
-Nombre des segments totals: 3686
+Nombre des segments totals: 1843
 
 ================================================
 d = 2
 Nombre des contours: 140
-Nombre des segments totals: 1934
+Nombre des segments totals: 967

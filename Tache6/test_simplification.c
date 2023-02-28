@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 
 
     ecrire_fichier_contours(simple, exit_file);
-    contours_data(simple);
+    contours_data_simplification(simple);
     create_postscript_contours(simple, exit_file, hauteur_image(I), largeur_image(I)); //Mode remplisage only
     printf("================================================");
 
@@ -77,7 +77,7 @@ int main(int argc, char **argv)
 
 
     ecrire_fichier_contours(simple2, exit_file2);
-    contours_data(simple2);
+    contours_data_simplification(simple2);
     create_postscript_contours(simple2, exit_file2, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
     printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
