@@ -33,6 +33,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V7: 28/2/2023: Started Tache7 - Partie 1
 * V7.1 : 28/2/2023: Completed Tache7 - Partie 1 (fixed errors with file EPS and tested the exported images)
 * V7.2: 28/2/2023: Corrections on Tache 6 partie 2 segments number and modifications and updates for Tache 7 partie 1
+* update contours.c (tache 7): 2/3/2023: Corrections to the function calcul_ct_bezier2/3 from int to double for x and y
 
 ## Sync
 
