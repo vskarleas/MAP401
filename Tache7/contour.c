@@ -693,7 +693,7 @@ Contour simplification_douglas_peucker(Contour C, int j1, int j2,double d)
 Point calcul_ct_bezier2(Bezier2 b2, double t)
 {
     Point A;
-    int x,y;
+    double x,y;
     x = ((1-t)*(1-t)*(b2.A.x))+(2*t*(1-t)*(b2.B.x))+(t*t*(b2.C.x));
     y = ((1-t)*(1-t)*(b2.A.y))+(2*t*(1-t)*(b2.B.y))+(t*t*(b2.C.y));
     A = set_point(x,y);
@@ -703,7 +703,7 @@ Point calcul_ct_bezier2(Bezier2 b2, double t)
 Point calcul_ct_bezier3(Bezier3 b3, double t)
 {
     Point A;
-    int x,y;
+    double x,y;
     x = ((1-t)*(1-t)*(1-t)*(b3.A.x))+(3*t*(1-t)*(1-t)*(b3.B.x))+(3*t*t*(1-t)*(b3.C.x))+(t*t*(b3.D.x));
     y = ((1-t)*(1-t)*(1-t)*(b3.A.y))+(3*t*(1-t)*(1-t)*(b3.B.y))+(3*t*t*(1-t)*(b3.C.y))+(t*t*(b3.D.y));
     A = set_point(x,y);
