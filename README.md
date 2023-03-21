@@ -35,6 +35,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V7.2: 28/2/2023: Corrections on Tache 6 partie 2 segments number and modifications and updates for Tache 7 partie 1
 * update contours.c (tache 7): 2/3/2023: Corrections to the function calcul_ct_bezier2/3 from int to double for x and y
 * V7.4 : 21/03/2023: Finished Tache 7.1
+* V7.5: 21/03/2023: Debut Tache 7.2
 
 ## Sync
 
@@ -55,4 +56,4 @@ Below you can find the releases of the code as well as a callendar of the latest
 * Tache4: test_postscript
 * Tache5: test_mask
 * Tache6: test_simplification
-* Tache7: test_approx & test_degree2
+* Tache7: test_approx & test_degree2 & test_degree3
