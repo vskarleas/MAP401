@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 
     char *exit_file2=malloc(strlen(name)+17);
     strcpy(exit_file2,name);
-    strcat(exit_file2,"-deg2-taille2.txt");
+    strcat(exit_file2,"-deg2-taille3.txt");
 
     char *exit_file10=malloc(strlen(name)+18);
     strcpy(exit_file10,name);
@@ -43,7 +43,9 @@ int main(int argc, char **argv)
     printf("\n");
     printf("\n");
 
-    printf("d = 1\n");
+    printf("================================================\n");
+    printf("====================== d = 1 ==================-\n");
+    printf("================================================\n");
     Liste_Contours simple;
     simple = creer_liste_Contours_vide();
     Contour el;
@@ -59,14 +61,14 @@ int main(int argc, char **argv)
         al = al->suiv;
     }
 
-    ecrire_fichier_contours(simple, exit_file);
     contours_data_bezier(simple);
     create_postscript_contours_bezier2(simple, exit_file, hauteur_image(I), largeur_image(I)); //Mode remplisage only
-    printf("================================================");
 
     printf("\n");
 
-    printf("d = 3\n");
+    printf("================================================\n");
+    printf("====================== d = 3 ===================\n");
+    printf("================================================\n");
     Liste_Contours simple2;
     simple2 = creer_liste_Contours_vide();
     Contour el2;
@@ -83,18 +85,16 @@ int main(int argc, char **argv)
     }
 
 
-    ecrire_fichier_contours(simple2, exit_file2);
     contours_data_bezier(simple2);
     create_postscript_contours_bezier2(simple2, exit_file2, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
-    printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
-    printf("=====================\n");
 
-    printf("================================================");
 
     printf("\n");
 
-    printf("d = 10\n");
+    printf("================================================\n");
+    printf("====================== d =10 ===================\n");
+    printf("================================================\n");
     Liste_Contours simple10;
     simple10 = creer_liste_Contours_vide();
     Contour el10;
@@ -111,18 +111,17 @@ int main(int argc, char **argv)
     }
 
 
-    ecrire_fichier_contours(simple10, exit_file10);
+
     contours_data_bezier(simple10);
     create_postscript_contours_bezier2(simple10, exit_file10, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
-    printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
-    printf("=====================\n");
 
-    printf("================================================");
+   
 
     printf("\n");
-
-    printf("d = 30\n");
+    printf("================================================\n");
+    printf("====================== d = 30 ==================\n");
+    printf("================================================\n");
     Liste_Contours simple30;
     simple30 = creer_liste_Contours_vide();
     Contour el30;
@@ -139,12 +138,9 @@ int main(int argc, char **argv)
     }
 
 
-    ecrire_fichier_contours(simple30, exit_file30);
     contours_data_bezier(simple30);
     create_postscript_contours_bezier2(simple30, exit_file30, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
-    printf("Text file should have been written with title %s\n", exit_file); //The file is handled on the algo_contour function
-    printf("=====================\n");
     return 0;
 
 }

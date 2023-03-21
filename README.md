@@ -34,6 +34,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V7.1 : 28/2/2023: Completed Tache7 - Partie 1 (fixed errors with file EPS and tested the exported images)
 * V7.2: 28/2/2023: Corrections on Tache 6 partie 2 segments number and modifications and updates for Tache 7 partie 1
 * update contours.c (tache 7): 2/3/2023: Corrections to the function calcul_ct_bezier2/3 from int to double for x and y
+* V7.4 : 21/03/2023: Finished Tache 7.1
 
 ## Sync
 
@@ -44,6 +45,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 5. 21/02/2023: Turing -> PC (Images)
 6. 21/02/2023: PC(V6) -> Turing (Link for Tache 6 sent to prof)
 7. 28/02/2023; PC(V7.2) -> Turing (Link for Tache 7 partie 1 sent to prof in order to check out what we have done for the calculation of the distance of a point from a point to the point of a courbe bezier)
+8. 21/03/2023: PC(7.4) -> Turing
 
 ## Tests Programmes
 

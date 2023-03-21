@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdlib.h": "c",
-        "sequence_point.h": "c"
+        "sequence_point.h": "c",
+        "test_degree": "c"
     }
 }

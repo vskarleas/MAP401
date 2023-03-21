@@ -704,8 +704,8 @@ Point calcul_ct_bezier3(Bezier3 b3, double t)
 {
     Point A;
     double x,y;
-    x = ((1-t)*(1-t)*(1-t)*(b3.A.x))+(3*t*(1-t)*(1-t)*(b3.B.x))+(3*t*t*(1-t)*(b3.C.x))+(t*t*(b3.D.x));
-    y = ((1-t)*(1-t)*(1-t)*(b3.A.y))+(3*t*(1-t)*(1-t)*(b3.B.y))+(3*t*t*(1-t)*(b3.C.y))+(t*t*(b3.D.y));
+    x = ((1-t)*(1-t)*(1-t)*(b3.A.x))+(3*t*(1-t)*(1-t)*(b3.B.x))+(3*t*t*(1-t)*(b3.C.x))+(t*t*t*(b3.D.x));
+    y = ((1-t)*(1-t)*(1-t)*(b3.A.y))+(3*t*(1-t)*(1-t)*(b3.B.y))+(3*t*t*(1-t)*(b3.C.y))+(t*t*t*(b3.D.y));
     A = set_point(x,y);
     return A;
 }
@@ -719,7 +719,7 @@ Bezier3 conversion_bezier2_to_bezier3 (Bezier2 b2)
     //Point C3
     b3.D = b2.C;
     
-    int x1,y1,x2,y2;
+    double x1,y1,x2,y2;
     //Point C1
     x1 = b2.A.x;
     y1 = b2.A.y;
@@ -747,7 +747,7 @@ Bezier3 conversion_bezier2_to_bezier3 (Bezier2 b2)
 Bezier2 approx_bezier2(Contour c, int j1, int j2)
 {
     Bezier2 b2;
-    int n = j2 -j1;
+    int n = j2 - j1;
 
     Tableau_Point T = sequence_points_liste_vers_tableau(c);
     Point C0, C2;
@@ -775,10 +775,10 @@ Bezier2 approx_bezier2(Contour c, int j1, int j2)
         a = (3*n_double)/((n_double*n_double)-1);
         b = ((1-(2*n_double))/(2*(n_double+1)));
 
-        int x=0;
-        int y=0;
+        double x=0;
+        double y=0;
         Point id;
-        for (int i = j1; i <j2; i++)
+        for (int i = j1+1; i <j2; i++)
         {
             id = T.tab[i];
             x = x + id.x;
@@ -786,12 +786,11 @@ Bezier2 approx_bezier2(Contour c, int j1, int j2)
         }
         
         //Transformner x et y en double
-        double x_double, y_double, res_x, res_y;
-        x_double = (double)(x);
-        y_double = (double)(y);
+        double res_x, res_y;
 
-        res_x = a * x_double + b * ((double)(C0.x)+(double)(C2.x));
-        res_y = a * y_double + b * ((double)(C0.y)+(double)(C2.y));
+
+        res_x = a * x + b * ((double)(C0.x)+(double)(C2.x));
+        res_y = a * y + b * ((double)(C0.y)+(double)(C2.y));
         
         Point C1;
         C1 = set_point(res_x, res_y);
@@ -821,7 +820,7 @@ double distance_point_bezier2(Point P1, Bezier2 b2, double ti)
 }
 
 
-Contour simplification_douglas_peucker_bezier2(Contour C, int j1, int j2,double d)
+Contour simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, double d)
 {
     int n = j2 -j1;
 
@@ -910,7 +909,8 @@ void create_postscript_contours_bezier2(Liste_Contours c, char *file_name, int h
         el = el->suiv;
         b2.C = el->data;
         b3 = conversion_bezier2_to_bezier3(b2);
-        fprintf(fptr, "%.0f %.0f moveto ", b3.A.x, hauteur - b3.A.y);
+        fprintf(fptr, "%.3f %.3f moveto ", b3.A.x, hauteur - b3.A.y);
+        fprintf(fptr, "%.3f %.3f %.3f %.3f %.3f %.3f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
         el = el->suiv;
         while (el != NULL)
         {
@@ -920,10 +920,10 @@ void create_postscript_contours_bezier2(Liste_Contours c, char *file_name, int h
             el = el->suiv;
             b2.C = el->data;
             b3 = conversion_bezier2_to_bezier3(b2);
-            fprintf(fptr, "%.0f %.0f %.0f %.0f %.0f %.0f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
+            fprintf(fptr, "%.3f %.3f %.3f %.3f %.3f %.3f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
             el = el->suiv;
         }
-        fprintf(fptr, "\n0 0 1 setrgbcolor 2.0 setlinewidth");
+        fprintf(fptr, "\n 2.0 setlinewidth");
         fprintf(fptr, "\n");
         al = al->suiv;
     }
