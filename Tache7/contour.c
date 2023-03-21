@@ -808,7 +808,6 @@ Bezier2 approx_bezier2(Contour c, int j1, int j2)
 
 }
 
-//FIX THIS
 double distance_point_bezier2(Point P1, Bezier2 b2, double ti)
 {
     double result;
@@ -924,6 +923,236 @@ void create_postscript_contours_bezier2(Liste_Contours c, char *file_name, int h
             el = el->suiv;
         }
         fprintf(fptr, "\n 2.0 setlinewidth");
+        fprintf(fptr, "\n");
+        al = al->suiv;
+    }
+    fprintf(fptr, "fill\n");
+        fprintf(fptr, "\n");
+    fprintf(fptr, "\n");
+    fprintf(fptr, "showpage\n");
+    fclose(fptr);
+    return;
+}
+
+
+
+
+//Tache7.2
+Bezier3 approx_bezier3(Contour c, int j1, int j2)
+{
+    Bezier3 b3;
+    int n = j2 -j1;
+
+    Tableau_Point T = sequence_points_liste_vers_tableau(c);
+    Point C0, C3;
+    C0 = T.tab[j1];
+    C3 = T.tab[j2];
+
+    if (n==1)
+    {
+        Point C1, C2;
+        C1 = set_point((2*C0.x+C3.x)/3, (2*C0.y+C3.y)/3);
+        C2 = set_point((C0.x+4*C3.x)/3, (C0.y+4*C3.y)/3);
+        //C1 = (2 P0 + P1)/3, C2 = (P0 + 2 P1)/3, 
+        //C2 = (P0 + 2 P1)/3, et C3 = P1
+        //Declaration de la courbe bezier
+        b3.A = C0;
+        b3.B = C1;
+        b3.C = C2;
+        b3.D= C3;
+        return b3;
+    }
+    else if (n==2)
+    {
+        Point C1, C2, P1;
+        P1 = T.tab[j1+1];
+        C1 = set_point((4*P1.x-C3.x)/3, (4*P1.y-C3.y)/3);
+        C2 = set_point((4*P1.x-C0.x)/3, (4*P1.y-C0.y)/3);
+        //C1 = (4 P1 − P2)/3  
+        //C2 = (4 P1 − P0)/3
+        //Declaration de la courbe bezier
+        b3.A = C0;
+        b3.B = C1;
+        b3.C = C2;
+        b3.D= C3;
+        return b3;
+    }
+    else if (n>2)
+    {
+        double n_double;
+        n_double = (double)(n);
+
+        //Calcul a et b
+        double a, b, lambda;
+        a = (-15*n_double*n_double*n_double+5*n_double*n_double+2*n_double+4)/(3*(n_double+2)*(3*n_double*n_double+1));
+        b = ((10*n_double*n_double*n_double-15*n_double*n_double+n_double+2)/(3*(n_double+2)*(3*n_double*n_double+1)));
+        lambda=(70*n_double)/(3*(n_double*n_double-1)*(n_double*n_double-4)*(3*n_double*n_double+1));
+        //définir la fonction alpha(i) a faire
+        double x=0;
+        double y=0;
+        Point id;
+        double i_dbl, alpha;
+        for (int i = j1+1; i <j2; i++)
+        {
+            id = T.tab[i];
+            i_dbl= (double)i;
+            alpha= (6*i_dbl*i_dbl*i_dbl*i_dbl) - (8*n_double*i_dbl*i_dbl*i_dbl) + (6*i_dbl*i_dbl) - (4*n_double*i_dbl) + (n_double*n_double*n_double*n_double) - (n_double*n_double);
+            x = x + alpha*(id.x);
+            y = y + alpha*(id.y);
+        }
+        double res_x, res_y;
+        res_x = a *((double)C0.x) + lambda*x * b * (double)(C3.x);
+        res_y = a *((double)C0.y) + lambda*y * b * (double)(C3.y);
+        
+        Point C1, C2;
+        C1 = set_point(res_x, res_y);
+        x=0;
+        y=0;
+        for (int i = j1; i <j2; i++)
+        {
+            id = T.tab[i];
+            i_dbl=n_double - (double)(i);
+            alpha= (6*i_dbl*i_dbl*i_dbl*i_dbl) - (8*n_double*i_dbl*i_dbl*i_dbl) + (6*i_dbl*i_dbl) - (4*n_double*i_dbl) + (n_double*n_double*n_double*n_double) - (n_double*n_double);
+            x = x + alpha*((double)id.x);
+            y = y + alpha*((double)id.y);
+        }
+        res_x = b *((double)C0.x) + lambda*x * a * (double)(C3.x);
+        res_y = b*((double)C0.y) + lambda*y * a * (double)(C3.y);
+        C2= set_point(res_x,res_y);
+
+        b3.A = C0;
+        b3.B = C1;
+        b3.C = C2;
+        b3.D = C3;
+        return b3;
+    }
+    else
+    {
+        printf("Error with the approximation to courbe Bezier3");
+        return b3;
+    }
+
+}
+
+
+
+double distance_point_bezier3(Point P1, Bezier3 b3, double ti)
+{
+    double result;
+    Point A;
+
+    A = calcul_ct_bezier3(b3, ti);
+    result = distance(P1, A);
+    return result;
+}
+
+
+
+Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2,double d)
+{
+    int n = j2 -j1;
+
+    //Creation de la courbe de Bezier
+    Bezier3 b3;
+    b3 = approx_bezier3(C, j1, j2);
+
+    Tableau_Point T = sequence_points_liste_vers_tableau(C);
+
+    
+
+    //Variable initialisations
+    double distance, ti;
+    double max_distance = 0; //dmax
+    int far_away, j;
+
+
+    for (int i=j1+1; i<j2; i++)
+    {
+        j = i - j1;
+        ti = (double)(j)/(double)(n);
+        distance = distance_point_bezier3(T.tab[i], b3, ti);
+        if (max_distance < distance)
+        {
+            max_distance = distance;
+            far_away = i;
+        }
+    }
+    
+    if (max_distance <= d)
+    {
+        Contour L ;
+        L = creer_liste_Point_vide();
+        ajouter_element_liste_Point(&L, b3.A);
+        ajouter_element_liste_Point(&L, b3.B);
+        ajouter_element_liste_Point(&L, b3.C);
+        ajouter_element_liste_Point(&L, b3.D);
+        return L;
+    }
+    else 
+    {
+        
+        Contour L1;
+        L1 = creer_liste_Point_vide();
+        L1 = simplification_douglas_peucker_bezier3(C, j1, far_away, d);
+
+        Contour L2;
+        L2 = creer_liste_Point_vide();
+        L2 = simplification_douglas_peucker_bezier3(C, far_away, j2, d);
+
+        return concatener_liste_Point(L1, L2);
+    }
+    
+}
+
+void create_postscript_contours_bezier3(Liste_Contours c, char *file_name, int hauteur, int largeur) // Mode remplisage uniquement
+{
+    // Extension managment
+    char *no_extension = strtok(file_name, ".");
+    char *with_extension = malloc(strlen(no_extension) + 4);
+    strcpy(with_extension, no_extension);
+    strcat(with_extension, ".eps"); // concantenation
+
+    FILE *fptr;
+    fptr = fopen(with_extension, "w");
+    if (fptr == NULL)
+    {
+        printf("EPS File Error!");
+        exit(1);
+    }
+
+    fprintf(fptr, "%%!PS-Adobe-3.0 EPSF-3.0\n");
+    fprintf(fptr, "%%%%BoundingBox:   %d   %d   %d   %d\n", 0, 0, largeur, hauteur);
+    fprintf(fptr, "\n");
+    Cellule_Liste_Contours *al;
+    al = c.first;
+    while (al != NULL)
+    {
+        Cellule_Liste_Point *el;
+        el = (al->data).first;
+        Bezier3 b3;
+        b3.A = el->data;
+        el = el->suiv;
+        b3.B = el->data;
+        el = el->suiv;
+        b3.C = el->data;
+        el = el->suiv;
+        b3.D = el->data;
+        fprintf(fptr, "%.3f %.3f moveto ", b3.A.x, hauteur - b3.A.y);
+        fprintf(fptr, "%.3f %.3f %.3f %.3f %.3f %.3f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
+        el = el->suiv;
+        while (el != NULL)
+        {
+            b3.A = el->data;
+            el = el->suiv;
+            b3.B = el->data;
+            el = el->suiv;
+            b3.C = el->data;
+            el = el->suiv;
+            b3.D = el->data;
+            fprintf(fptr, "%.3f %.3f %.3f %.3f %.3f %.3f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
+            el = el->suiv;
+        }
+        fprintf(fptr, "\n2.0 setlinewidth");
         fprintf(fptr, "\n");
         al = al->suiv;
     }

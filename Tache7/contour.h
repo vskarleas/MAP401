@@ -85,4 +85,12 @@ Contour simplification_douglas_peucker_bezier2(Contour C, int j1, int j2,double 
 
 void create_postscript_contours_bezier2(Liste_Contours c, char *file_name, int hauteur, int largeur);
 
+Bezier3 approx_bezier3(Contour c, int j1, int j2);
+
+double distance_point_bezier3(Point P1, Bezier3 b3, double ti);
+
+Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2,double d);
+
+void create_postscript_contours_bezier3(Liste_Contours c, char *file_name, int hauteur, int largeur);
+
 #endif /* _CONTOUR_H_ */
