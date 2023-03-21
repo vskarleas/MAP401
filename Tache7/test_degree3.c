@@ -7,8 +7,8 @@
 
 int main(int argc, char **argv)
 {
-    //Test no 10
-    printf("Starting Test 10\n");
+    //Test no 13
+    printf("Starting Test 13\n");
     printf("Enter the name of the image's file without any extension (pbm)\n");
     char name[256];
     scanf("%s", name);
@@ -61,11 +61,10 @@ int main(int argc, char **argv)
         al = al->suiv;
     }
 
-    contours_data_bezier(simple);
+    contours_data_bezier3(simple);
     create_postscript_contours_bezier3(simple, exit_file, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
     printf("\n");
-/*
 
     printf("================================================\n");
     printf("====================== d = 3 ===================\n");
@@ -80,14 +79,14 @@ int main(int argc, char **argv)
     while (al2 != NULL)
     {
         Tableau_Point T2 = sequence_points_liste_vers_tableau(al2->data);
-        el2 = simplification_douglas_peucker_bezier2(al2->data, 0,(T2.taille)-1, 3);
+        el2 = simplification_douglas_peucker_bezier3(al2->data, 0,(T2.taille)-1, 3);
         ajouter_element_liste_Contours(&simple2, el2);
         al2 = al2->suiv;
     }
 
 
-    contours_data_bezier(simple2);
-    create_postscript_contours_bezier2(simple2, exit_file2, hauteur_image(I), largeur_image(I)); //Mode remplisage only
+    //contours_data_bezier3(simple2);
+    create_postscript_contours_bezier3(simple2, exit_file2, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
 
 
@@ -106,15 +105,15 @@ int main(int argc, char **argv)
     while (al10 != NULL)
     {
         Tableau_Point T2 = sequence_points_liste_vers_tableau(al10->data);
-        el10 = simplification_douglas_peucker_bezier2(al10->data, 0,(T2.taille)-1, 10);
+        el10 = simplification_douglas_peucker_bezier3(al10->data, 0,(T2.taille)-1, 10);
         ajouter_element_liste_Contours(&simple10, el10);
         al10 = al10->suiv;
     }
 
 
 
-    contours_data_bezier(simple10);
-    create_postscript_contours_bezier2(simple10, exit_file10, hauteur_image(I), largeur_image(I)); //Mode remplisage only
+    //contours_data_bezier3(simple10);
+    create_postscript_contours_bezier3(simple10, exit_file10, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
 
    
@@ -133,15 +132,15 @@ int main(int argc, char **argv)
     while (al30 != NULL)
     {
         Tableau_Point T2 = sequence_points_liste_vers_tableau(al30->data);
-        el30 = simplification_douglas_peucker_bezier2(al30->data, 0,(T2.taille)-1, 30);
+        el30 = simplification_douglas_peucker_bezier3(al30->data, 0,(T2.taille)-1, 30);
         ajouter_element_liste_Contours(&simple30, el30);
         al30 = al30->suiv;
     }
 
 
-    contours_data_bezier(simple30);
-    create_postscript_contours_bezier2(simple30, exit_file30, hauteur_image(I), largeur_image(I)); //Mode remplisage only
-*/
+    //contours_data_bezier3(simple30);
+    create_postscript_contours_bezier3(simple30, exit_file30, hauteur_image(I), largeur_image(I)); //Mode remplisage only
+
     return 0;
 
 }

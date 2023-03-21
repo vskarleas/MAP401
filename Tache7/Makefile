@@ -1,6 +1,6 @@
 #############################################################################
 # Fichier Makefile 
-# UE MAP401 - DLST - UGA - 2020/2021
+# UE MAP401 - DLST - UGA - 2022/2023
 #############################################################################
 #############################################################################
 # This version of make file includes tests for all the previous Taches
@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geom test_contour test_postscript test_mask test_simplification test_approx test_degree2 test_degree3
+EXECUTABLES = test_image test_geom test_contour test_postscript test_mask test_simplification test_approx test_degree2 test_degree3 test_approx3
 
 
 #############################################################################
@@ -143,6 +143,13 @@ test_approx.o : test_approx.c contour.h image.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
+test_approx3.o : test_approx3.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_approx3"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
 test_degree2.o : test_degree2.c contour.h image.h
 	@echo ""
 	@echo "---------------------------------------------"
@@ -203,6 +210,13 @@ test_simplification : test_simplification.o contour.o image.o geom2d.o sequence_
 	$(CC) $^ $(LDOPTS) -o $@
 
 test_approx : test_approx.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_approx3 : test_approx3.o contour.o image.o geom2d.o sequence_point.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

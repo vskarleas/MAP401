@@ -419,7 +419,7 @@ void ecrire_fichier_contours(Liste_Contours c, char *file_name)
         exit(1);
     }
     int id = 0;
-    
+
     Cellule_Liste_Contours *el;
     el = c.first;
     if (el == NULL)
@@ -498,7 +498,7 @@ void contours_data_simplification(Liste_Contours c)
         el = el->suiv;
     }
     printf("Nombre des contours: %d\n", nb);
-    printf("Nombre des segments totals: %d\n", segments/2);
+    printf("Nombre des segments totals: %d\n", segments / 2);
     printf("\n");
 }
 
@@ -515,6 +515,32 @@ void contours_data_bezier(Liste_Contours c)
         e = (el->data).first;
         while (e != NULL)
         {
+            e = e->suiv;
+            e = e->suiv;
+            e = e->suiv;
+            nb_beziers++;
+        }
+        el = el->suiv;
+    }
+    printf("Nombre des contours: %d\n", nb);
+    printf("Nombre des bezier totals: %d\n", nb_beziers);
+    printf("\n");
+}
+
+void contours_data_bezier3(Liste_Contours c)
+{
+    Cellule_Liste_Contours *el;
+    el = c.first;
+    int nb = 0;
+    int nb_beziers = 0;
+    while (el != NULL)
+    {
+        nb++;
+        Cellule_Liste_Point *e;
+        e = (el->data).first;
+        while (e != NULL)
+        {
+            e = e->suiv;
             e = e->suiv;
             e = e->suiv;
             e = e->suiv;
@@ -634,29 +660,28 @@ void create_postscript_contours(Liste_Contours c, char *file_name, int hauteur, 
         al = al->suiv;
     }
     fprintf(fptr, "fill\n");
-        fprintf(fptr, "\n");
+    fprintf(fptr, "\n");
     fprintf(fptr, "\n");
     fprintf(fptr, "showpage\n");
     fclose(fptr);
     return;
 }
 
-Contour simplification_douglas_peucker(Contour C, int j1, int j2,double d)
+Contour simplification_douglas_peucker(Contour C, int j1, int j2, double d)
 {
     Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
-    //Segment creation
+    // Segment creation
     Segment S;
     S.A = T.tab[j1];
     S.B = T.tab[j2];
 
-    //Variable initialisations
+    // Variable initialisations
     double distance;
     double max_distance = 0;
     int far_away;
 
-
-    for (int i=j1+1; i<j2; i++)
+    for (int i = j1 + 1; i < j2; i++)
     {
         distance = distance_point_segment(T.tab[i], S);
         if (max_distance < distance)
@@ -665,18 +690,18 @@ Contour simplification_douglas_peucker(Contour C, int j1, int j2,double d)
             far_away = i;
         }
     }
-    
+
     if (max_distance <= d)
     {
-        Contour L ;
+        Contour L;
         L = creer_liste_Point_vide();
         ajouter_element_liste_Point(&L, S.A);
         ajouter_element_liste_Point(&L, S.B);
         return L;
     }
-    else 
+    else
     {
-        
+
         Contour L1;
         L1 = creer_liste_Point_vide();
         L1 = simplification_douglas_peucker(C, j1, far_away, d);
@@ -687,40 +712,40 @@ Contour simplification_douglas_peucker(Contour C, int j1, int j2,double d)
 
         return concatener_liste_Point(L1, L2);
     }
-    
 }
 
+// Tache 7
 Point calcul_ct_bezier2(Bezier2 b2, double t)
 {
     Point A;
-    double x,y;
-    x = ((1-t)*(1-t)*(b2.A.x))+(2*t*(1-t)*(b2.B.x))+(t*t*(b2.C.x));
-    y = ((1-t)*(1-t)*(b2.A.y))+(2*t*(1-t)*(b2.B.y))+(t*t*(b2.C.y));
-    A = set_point(x,y);
+    double x, y;
+    x = ((1 - t) * (1 - t) * (b2.A.x)) + (2 * t * (1 - t) * (b2.B.x)) + (t * t * (b2.C.x));
+    y = ((1 - t) * (1 - t) * (b2.A.y)) + (2 * t * (1 - t) * (b2.B.y)) + (t * t * (b2.C.y));
+    A = set_point(x, y);
     return A;
 }
 
 Point calcul_ct_bezier3(Bezier3 b3, double t)
 {
     Point A;
-    double x,y;
-    x = ((1-t)*(1-t)*(1-t)*(b3.A.x))+(3*t*(1-t)*(1-t)*(b3.B.x))+(3*t*t*(1-t)*(b3.C.x))+(t*t*t*(b3.D.x));
-    y = ((1-t)*(1-t)*(1-t)*(b3.A.y))+(3*t*(1-t)*(1-t)*(b3.B.y))+(3*t*t*(1-t)*(b3.C.y))+(t*t*t*(b3.D.y));
-    A = set_point(x,y);
+    double x, y;
+    x = ((1 - t) * (1 - t) * (1 - t) * (b3.A.x)) + (3 * t * (1 - t) * (1 - t) * (b3.B.x)) + (3 * t * t * (1 - t) * (b3.C.x)) + (t * t * t * (b3.D.x));
+    y = ((1 - t) * (1 - t) * (1 - t) * (b3.A.y)) + (3 * t * (1 - t) * (1 - t) * (b3.B.y)) + (3 * t * t * (1 - t) * (b3.C.y)) + (t * t * t * (b3.D.y));
+    A = set_point(x, y);
     return A;
 }
 
-Bezier3 conversion_bezier2_to_bezier3 (Bezier2 b2)
+Bezier3 conversion_bezier2_to_bezier3(Bezier2 b2)
 {
     Bezier3 b3;
-    //Point C0
+    // Point C0
     b3.A = b2.A;
 
-    //Point C3
+    // Point C3
     b3.D = b2.C;
-    
-    double x1,y1,x2,y2;
-    //Point C1
+
+    double x1, y1, x2, y2;
+    // Point C1
     x1 = b2.A.x;
     y1 = b2.A.y;
 
@@ -728,22 +753,23 @@ Bezier3 conversion_bezier2_to_bezier3 (Bezier2 b2)
     y2 = b2.B.y;
 
     Point total;
-    total = set_point((x1+(2*x2))/3,(y1+(2*y2))/3);
+    total = set_point((x1 + (2 * x2)) / 3, (y1 + (2 * y2)) / 3);
     b3.B = total;
 
-    //Point C2
+    // Point C2
     x1 = b2.B.x;
     y1 = b2.B.y;
 
     x2 = b2.C.x;
     y2 = b2.C.y;
 
-    total = set_point(((2*x1)+x2)/3,((2*y1)+y2)/3);
+    total = set_point(((2 * x1) + x2) / 3, ((2 * y1) + y2) / 3);
     b3.C = total;
 
     return b3;
 }
 
+// Tache 7.1
 Bezier2 approx_bezier2(Contour c, int j1, int j2)
 {
     Bezier2 b2;
@@ -754,44 +780,43 @@ Bezier2 approx_bezier2(Contour c, int j1, int j2)
     C0 = T.tab[j1];
     C2 = T.tab[j2];
 
-    if (n==1)
+    if (n == 1)
     {
         Point C1;
-        C1 = set_point((C0.x+C2.x)/2, (C0.y+C2.y)/2);
+        C1 = set_point((C0.x + C2.x) / 2, (C0.y + C2.y) / 2);
 
-        //Declaration de la courbe bezier
+        // Declaration de la courbe bezier
         b2.A = C0;
         b2.B = C1;
         b2.C = C2;
         return b2;
     }
-    else if (n>=2)
+    else if (n >= 2)
     {
         double n_double;
         n_double = (double)(n);
 
-        //Calcul a et b
+        // Calcul a et b
         double a, b;
-        a = (3*n_double)/((n_double*n_double)-1);
-        b = ((1-(2*n_double))/(2*(n_double+1)));
+        a = (3 * n_double) / ((n_double * n_double) - 1);
+        b = ((1 - (2 * n_double)) / (2 * (n_double + 1)));
 
-        double x=0;
-        double y=0;
+        double x = 0;
+        double y = 0;
         Point id;
-        for (int i = j1+1; i <j2; i++)
+        for (int i = j1 + 1; i < j2; i++)
         {
             id = T.tab[i];
             x = x + id.x;
             y = y + id.y;
         }
-        
-        //Transformner x et y en double
+
+        // Transformner x et y en double
         double res_x, res_y;
 
+        res_x = a * x + b * ((double)(C0.x) + (double)(C2.x));
+        res_y = a * y + b * ((double)(C0.y) + (double)(C2.y));
 
-        res_x = a * x + b * ((double)(C0.x)+(double)(C2.x));
-        res_y = a * y + b * ((double)(C0.y)+(double)(C2.y));
-        
         Point C1;
         C1 = set_point(res_x, res_y);
 
@@ -805,7 +830,6 @@ Bezier2 approx_bezier2(Contour c, int j1, int j2)
         printf("Error witht the approximation to courbe Bezier2");
         return b2;
     }
-
 }
 
 double distance_point_bezier2(Point P1, Bezier2 b2, double ti)
@@ -818,29 +842,25 @@ double distance_point_bezier2(Point P1, Bezier2 b2, double ti)
     return result;
 }
 
-
 Contour simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, double d)
 {
-    int n = j2 -j1;
+    int n = j2 - j1;
 
-    //Creation de la courbe de Bezier
+    // Creation de la courbe de Bezier
     Bezier2 b2;
     b2 = approx_bezier2(C, j1, j2);
 
     Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
-    
-
-    //Variable initialisations
+    // Variable initialisations
     double distance, ti;
-    double max_distance = 0; //dmax
+    double max_distance = 0; // dmax
     int far_away, j;
 
-
-    for (int i=j1+1; i<j2; i++)
+    for (int i = j1 + 1; i < j2; i++)
     {
         j = i - j1;
-        ti = (double)(j)/(double)(n);
+        ti = (double)(j) / (double)(n);
         distance = distance_point_bezier2(T.tab[i], b2, ti);
         if (max_distance < distance)
         {
@@ -848,19 +868,19 @@ Contour simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, double
             far_away = i;
         }
     }
-    
+
     if (max_distance <= d)
     {
-        Contour L ;
+        Contour L;
         L = creer_liste_Point_vide();
         ajouter_element_liste_Point(&L, b2.A);
         ajouter_element_liste_Point(&L, b2.B);
         ajouter_element_liste_Point(&L, b2.C);
         return L;
     }
-    else 
+    else
     {
-        
+
         Contour L1;
         L1 = creer_liste_Point_vide();
         L1 = simplification_douglas_peucker_bezier2(C, j1, far_away, d);
@@ -871,9 +891,7 @@ Contour simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, double
 
         return concatener_liste_Point(L1, L2);
     }
-    
 }
-
 
 void create_postscript_contours_bezier2(Liste_Contours c, char *file_name, int hauteur, int largeur) // Mode remplisage uniquement
 {
@@ -927,98 +945,90 @@ void create_postscript_contours_bezier2(Liste_Contours c, char *file_name, int h
         al = al->suiv;
     }
     fprintf(fptr, "fill\n");
-        fprintf(fptr, "\n");
+    fprintf(fptr, "\n");
     fprintf(fptr, "\n");
     fprintf(fptr, "showpage\n");
     fclose(fptr);
     return;
 }
 
-
-
-
-//Tache7.2
 Bezier3 approx_bezier3(Contour c, int j1, int j2)
 {
     Bezier3 b3;
-    int n = j2 -j1;
+    int n = j2 - j1;
 
     Tableau_Point T = sequence_points_liste_vers_tableau(c);
     Point C0, C3;
     C0 = T.tab[j1];
     C3 = T.tab[j2];
 
-    if (n==1)
+    if (n == 1)
     {
         Point C1, C2;
-        C1 = set_point((2*C0.x+C3.x)/3, (2*C0.y+C3.y)/3);
-        C2 = set_point((C0.x+4*C3.x)/3, (C0.y+4*C3.y)/3);
-        //C1 = (2 P0 + P1)/3, C2 = (P0 + 2 P1)/3, 
-        //C2 = (P0 + 2 P1)/3, et C3 = P1
-        //Declaration de la courbe bezier
+        C1 = set_point((2 * C0.x + C3.x) / 3, (2 * C0.y + C3.y) / 3);
+        C2 = set_point((C0.x + 2 * C3.x) / 3, (C0.y + 2 * C3.y) / 3);
+        // Declaration de la courbe bezier
         b3.A = C0;
         b3.B = C1;
         b3.C = C2;
-        b3.D= C3;
+        b3.D = C3;
         return b3;
     }
-    else if (n==2)
+    else if (n == 2)
     {
         Point C1, C2, P1;
-        P1 = T.tab[j1+1];
-        C1 = set_point((4*P1.x-C3.x)/3, (4*P1.y-C3.y)/3);
-        C2 = set_point((4*P1.x-C0.x)/3, (4*P1.y-C0.y)/3);
-        //C1 = (4 P1 − P2)/3  
-        //C2 = (4 P1 − P0)/3
-        //Declaration de la courbe bezier
+        P1 = T.tab[j1 + 1];
+        C1 = set_point((4 * P1.x - C3.x) / 3, (4 * P1.y - C3.y) / 3);
+        C2 = set_point((4 * P1.x - C0.x) / 3, (4 * P1.y - C0.y) / 3);
+        // Declaration de la courbe bezier
         b3.A = C0;
         b3.B = C1;
         b3.C = C2;
-        b3.D= C3;
+        b3.D = C3;
         return b3;
     }
-    else if (n>2)
+    else if (n > 2)
     {
         double n_double;
         n_double = (double)(n);
 
-        //Calcul a et b
+        // Calcul a et b
         double a, b, lambda;
-        a = (-15*n_double*n_double*n_double+5*n_double*n_double+2*n_double+4)/(3*(n_double+2)*(3*n_double*n_double+1));
-        b = ((10*n_double*n_double*n_double-15*n_double*n_double+n_double+2)/(3*(n_double+2)*(3*n_double*n_double+1)));
-        lambda=(70*n_double)/(3*(n_double*n_double-1)*(n_double*n_double-4)*(3*n_double*n_double+1));
-        //définir la fonction alpha(i) a faire
-        double x=0;
-        double y=0;
+        a = (-15 * n_double * n_double * n_double + 5 * n_double * n_double + 2 * n_double + 4) / (3 * (n_double + 2) * (3 * n_double * n_double + 1));
+        b = ((10 * n_double * n_double * n_double - 15 * n_double * n_double + n_double + 2) / (3 * (n_double + 2) * (3 * n_double * n_double + 1)));
+        lambda = (70 * n_double) / (3 * (n_double * n_double - 1) * (n_double * n_double - 4) * (3 * n_double * n_double + 1));
+        // définir la fonction alpha(i) a faire
+        double x = 0;
+        double y = 0;
         Point id;
         double i_dbl, alpha;
-        for (int i = j1+1; i <j2; i++)
+        for (int i = j1 + 1; i < j2; i++)
         {
-            id = T.tab[i];
-            i_dbl= (double)i;
-            alpha= (6*i_dbl*i_dbl*i_dbl*i_dbl) - (8*n_double*i_dbl*i_dbl*i_dbl) + (6*i_dbl*i_dbl) - (4*n_double*i_dbl) + (n_double*n_double*n_double*n_double) - (n_double*n_double);
-            x = x + alpha*(id.x);
-            y = y + alpha*(id.y);
+            i_dbl = (double)(i);
+            alpha = (6 * i_dbl * i_dbl * i_dbl * i_dbl) - (8 * n_double * i_dbl * i_dbl * i_dbl) + (6 * i_dbl * i_dbl) - (4 * n_double * i_dbl) + (n_double * n_double * n_double * n_double) - (n_double * n_double);
+            id = T.tab[j1 + i];
+            x = x + alpha * (id.x);
+            y = y + alpha * (id.y);
         }
         double res_x, res_y;
-        res_x = a *((double)C0.x) + lambda*x * b * (double)(C3.x);
-        res_y = a *((double)C0.y) + lambda*y * b * (double)(C3.y);
-        
+        res_x = a * ((double)C0.x) + lambda * x + b * (double)(C3.x);
+        res_y = a * ((double)C0.y) + lambda * y + b * (double)(C3.y);
+
         Point C1, C2;
         C1 = set_point(res_x, res_y);
-        x=0;
-        y=0;
-        for (int i = j1; i <j2; i++)
+        x = 0;
+        y = 0;
+        for (int i = j1 + 1; i < j2; i++)
         {
-            id = T.tab[i];
-            i_dbl=n_double - (double)(i);
-            alpha= (6*i_dbl*i_dbl*i_dbl*i_dbl) - (8*n_double*i_dbl*i_dbl*i_dbl) + (6*i_dbl*i_dbl) - (4*n_double*i_dbl) + (n_double*n_double*n_double*n_double) - (n_double*n_double);
-            x = x + alpha*((double)id.x);
-            y = y + alpha*((double)id.y);
+            i_dbl = n_double - (double)(i);
+            alpha = (6 * i_dbl * i_dbl * i_dbl * i_dbl) - (8 * n_double * i_dbl * i_dbl * i_dbl) + (6 * i_dbl * i_dbl) - (4 * n_double * i_dbl) + (n_double * n_double * n_double * n_double) - (n_double * n_double);
+            id = T.tab[j1 + i];
+            x = x + alpha * ((double)id.x);
+            y = y + alpha * ((double)id.y);
         }
-        res_x = b *((double)C0.x) + lambda*x * a * (double)(C3.x);
-        res_y = b*((double)C0.y) + lambda*y * a * (double)(C3.y);
-        C2= set_point(res_x,res_y);
+        res_x = b * ((double)C0.x) + lambda * x + a * (double)(C3.x);
+        res_y = b * ((double)C0.y) + lambda * y + a * (double)(C3.y);
+        C2 = set_point(res_x, res_y);
 
         b3.A = C0;
         b3.B = C1;
@@ -1031,11 +1041,9 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
         printf("Error with the approximation to courbe Bezier3");
         return b3;
     }
-
 }
 
-
-
+// Check after that
 double distance_point_bezier3(Point P1, Bezier3 b3, double ti)
 {
     double result;
@@ -1046,30 +1054,25 @@ double distance_point_bezier3(Point P1, Bezier3 b3, double ti)
     return result;
 }
 
-
-
-Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2,double d)
+Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, double d)
 {
-    int n = j2 -j1;
+    int n = j2 - j1;
 
-    //Creation de la courbe de Bezier
+    // Creation de la courbe de Bezier
     Bezier3 b3;
     b3 = approx_bezier3(C, j1, j2);
 
     Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
-    
-
-    //Variable initialisations
+    // Variable initialisations
     double distance, ti;
-    double max_distance = 0; //dmax
+    double max_distance = 0; // dmax
     int far_away, j;
 
-
-    for (int i=j1+1; i<j2; i++)
+    for (int i = j1 + 1; i < j2; i++)
     {
         j = i - j1;
-        ti = (double)(j)/(double)(n);
+        ti = (double)(j) / (double)(n);
         distance = distance_point_bezier3(T.tab[i], b3, ti);
         if (max_distance < distance)
         {
@@ -1077,10 +1080,10 @@ Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2,double 
             far_away = i;
         }
     }
-    
+
     if (max_distance <= d)
     {
-        Contour L ;
+        Contour L;
         L = creer_liste_Point_vide();
         ajouter_element_liste_Point(&L, b3.A);
         ajouter_element_liste_Point(&L, b3.B);
@@ -1088,20 +1091,19 @@ Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2,double 
         ajouter_element_liste_Point(&L, b3.D);
         return L;
     }
-    else 
+    else
     {
-        
+
         Contour L1;
         L1 = creer_liste_Point_vide();
-        L1 = simplification_douglas_peucker_bezier3(C, j1, far_away, d);
+        L1 = simplification_douglas_peucker_bezier2(C, j1, far_away, d);
 
         Contour L2;
         L2 = creer_liste_Point_vide();
-        L2 = simplification_douglas_peucker_bezier3(C, far_away, j2, d);
+        L2 = simplification_douglas_peucker_bezier2(C, far_away, j2, d);
 
         return concatener_liste_Point(L1, L2);
     }
-    
 }
 
 void create_postscript_contours_bezier3(Liste_Contours c, char *file_name, int hauteur, int largeur) // Mode remplisage uniquement
@@ -1152,12 +1154,12 @@ void create_postscript_contours_bezier3(Liste_Contours c, char *file_name, int h
             fprintf(fptr, "%.3f %.3f %.3f %.3f %.3f %.3f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
             el = el->suiv;
         }
-        fprintf(fptr, "\n2.0 setlinewidth");
+        fprintf(fptr, "\n 2.0 setlinewidth");
         fprintf(fptr, "\n");
         al = al->suiv;
     }
     fprintf(fptr, "fill\n");
-        fprintf(fptr, "\n");
+    fprintf(fptr, "\n");
     fprintf(fptr, "\n");
     fprintf(fptr, "showpage\n");
     fclose(fptr);

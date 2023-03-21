@@ -36,6 +36,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * update contours.c (tache 7): 2/3/2023: Corrections to the function calcul_ct_bezier2/3 from int to double for x and y
 * V7.4 : 21/03/2023: Finished Tache 7.1
 * V7.5: 21/03/2023: Debut Tache 7.2
+* V7.6: 21/03/2023: Correctioons on Tache7.2 - verfied function approx
 
 ## Sync
 
