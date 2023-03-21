@@ -45,7 +45,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 5. 21/02/2023: Turing -> PC (Images)
 6. 21/02/2023: PC(V6) -> Turing (Link for Tache 6 sent to prof)
 7. 28/02/2023; PC(V7.2) -> Turing (Link for Tache 7 partie 1 sent to prof in order to check out what we have done for the calculation of the distance of a point from a point to the point of a courbe bezier)
-8. 21/03/2023: PC(7.4) -> Turing
+8. 21/03/2023: PC(7.4) -> Turing (Tache 7.1)
 
 ## Tests Programmes
 
