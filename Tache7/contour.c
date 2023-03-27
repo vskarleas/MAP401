@@ -998,14 +998,15 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
         b = ((10 * n_double * n_double * n_double - 15 * n_double * n_double + n_double + 2) / (3 * (n_double + 2) * (3 * n_double * n_double + 1)));
         lambda = (70 * n_double) / (3 * (n_double * n_double - 1) * (n_double * n_double - 4) * (3 * n_double * n_double + 1));
         // définir la fonction alpha(i) a faire
-        double x = 0;
-        double y = 0;
+        double x = 0.0;
+        double y = 0.0;
         Point id;
         double i_dbl, alpha;
-        for (int i = j1 + 1; i < j2; i++)
+        for (int i = 1; i < n; i++)
         {
             i_dbl = (double)(i);
             alpha = (6 * i_dbl * i_dbl * i_dbl * i_dbl) - (8 * n_double * i_dbl * i_dbl * i_dbl) + (6 * i_dbl * i_dbl) - (4 * n_double * i_dbl) + (n_double * n_double * n_double * n_double) - (n_double * n_double);
+            //FIXED
             id = T.tab[j1 + i];
             x = x + alpha * (id.x);
             y = y + alpha * (id.y);
@@ -1018,7 +1019,7 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
         C1 = set_point(res_x, res_y);
         x = 0;
         y = 0;
-        for (int i = j1 + 1; i < j2; i++)
+        for (int i = 1; i < n; i++)
         {
             i_dbl = n_double - (double)(i);
             alpha = (6 * i_dbl * i_dbl * i_dbl * i_dbl) - (8 * n_double * i_dbl * i_dbl * i_dbl) + (6 * i_dbl * i_dbl) - (4 * n_double * i_dbl) + (n_double * n_double * n_double * n_double) - (n_double * n_double);
@@ -1043,7 +1044,6 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
     }
 }
 
-// Check after that
 double distance_point_bezier3(Point P1, Bezier3 b3, double ti)
 {
     double result;
@@ -1096,11 +1096,11 @@ Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, double
 
         Contour L1;
         L1 = creer_liste_Point_vide();
-        L1 = simplification_douglas_peucker_bezier2(C, j1, far_away, d);
+        L1 = simplification_douglas_peucker_bezier3(C, j1, far_away, d);
 
         Contour L2;
         L2 = creer_liste_Point_vide();
-        L2 = simplification_douglas_peucker_bezier2(C, far_away, j2, d);
+        L2 = simplification_douglas_peucker_bezier3(C, far_away, j2, d);
 
         return concatener_liste_Point(L1, L2);
     }

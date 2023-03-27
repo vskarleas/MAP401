@@ -85,7 +85,7 @@ int main(int argc, char **argv)
     }
 
 
-    //contours_data_bezier3(simple2);
+    contours_data_bezier3(simple2);
     create_postscript_contours_bezier3(simple2, exit_file2, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
 
@@ -112,7 +112,7 @@ int main(int argc, char **argv)
 
 
 
-    //contours_data_bezier3(simple10);
+    contours_data_bezier3(simple10);
     create_postscript_contours_bezier3(simple10, exit_file10, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
 
@@ -138,7 +138,7 @@ int main(int argc, char **argv)
     }
 
 
-    //contours_data_bezier3(simple30);
+    contours_data_bezier3(simple30);
     create_postscript_contours_bezier3(simple30, exit_file30, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 
     return 0;

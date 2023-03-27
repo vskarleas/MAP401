@@ -37,6 +37,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V7.4 : 21/03/2023: Finished Tache 7.1
 * V7.5: 21/03/2023: Debut Tache 7.2
 * V7.6: 21/03/2023: Correctioons on Tache7.2 - verfied function approx_bezier3
+* V7.7: 27/03/2023: Tache 7.2 completed
 
 ## Sync
 
@@ -48,6 +49,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 6. 21/02/2023: PC(V6) -> Turing (Link for Tache 6 sent to prof)
 7. 28/02/2023; PC(V7.2) -> Turing (Link for Tache 7 partie 1 sent to prof in order to check out what we have done for the calculation of the distance of a point from a point to the point of a courbe bezier)
 8. 21/03/2023: PC(7.4) -> Turing (Tache 7.1)
+9. 27/03/2023: PC(7.7) -> Turing (Tache 7.2)
 
 ## Tests Programmes
 
@@ -57,4 +59,5 @@ Below you can find the releases of the code as well as a callendar of the latest
 * Tache4: test_postscript
 * Tache5: test_mask
 * Tache6: test_simplification
-* Tache7: test_approx & test_degree2 & test_degree3
+* Tache7.1: test_approx & test_degree2
+* Tache7.2: test_approx3 & test_degree3
