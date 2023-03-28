@@ -45,6 +45,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V7.6: 21/03/2023: Correctioons on Tache7.2 - verfied function approx_bezier3
 * V7.7: 27/03/2023: Tache 7.2 completed
 * V8.1: 28/03/2023: Tache 8 started - remaining comments, README tests verification, as well as eps files creation with the rest of the files Asterix3, lettre-L-Cursive and ColombesDeLaPaix pour les methodes degree2 et degree3. A completion of the word file for Tache 8 Partie 2 is required (trasnfrom eps to png and complete the table for ColombesDeLaPaix pour la methode de simplification).
+* V8.2: 28/03/2023: Bug fices on contour.c and automatisation of testing process for test_degree2-tache8, test_degree3-tache8 and test_simplification-tache8
 
 ## Sync
 
@@ -68,5 +69,5 @@ Below you can find the releases of the code as well as a callendar of the latest
 * Tache6: test_simplification
 * Tache7.1: test_approx & test_degree2
 * Tache7.2: test_approx3 & test_degree3
-* Tache8.1:
-* Tache8.2:
+* Tache8.1: test_simplification-courbe_hilbert_7, test_simplification-courbe_hilbert_8, test_simplification-courbe_hilbert_9, test_simplification-courbe_hilbert_10, test_simplification-zebres-1000x0750, test_simplification-zebres-2000x1500, test_simplification-zebres-3000x2250, test_simplification-zebres-4000x3750(Tache 6 folder)
+* Tache8.2: test_degree2-tache8, test_degree3-tache8 & test_simplification-tache8 (Tache 7 folder)

@@ -827,6 +827,9 @@ Bezier2 approx_bezier2(Contour c, int j1, int j2)
     }
     else
     {
+        b2.A = set_point(-1, -1);
+        b2.B = set_point(-1, -1);
+        b2.C = set_point(-1, -1);
         printf("Error witht the approximation to courbe Bezier2");
         return b2;
     }
@@ -1039,6 +1042,10 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
     }
     else
     {
+        b3.A = set_point(-1, -1);
+        b3.B = set_point(-1, -1);
+        b3.C = set_point(-1, -1);
+        b3.D = set_point(-1, -1);
         printf("Error with the approximation to courbe Bezier3");
         return b3;
     }

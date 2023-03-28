@@ -11,15 +11,24 @@ int main(int argc, char **argv)
     char name[256];
     double d = 0.0;
     scanf("%s", name);
-    printf("D=\n");
+    printf("D=");
     scanf("%lf", &d);
+    printf("\n");
 
     char *fichier=malloc(strlen(name)+4);
     char exit_file[(strlen(name)+20)];
     strcpy(fichier,name);
     strcat(fichier,".pbm");
 
-    snprintf(exit_file, (strlen(name)+20), "%s-deg3-taille%.0f.txt", name, d );
+    if (d != 0.5)
+    {
+        snprintf(exit_file, (strlen(name)+20), "%s-deg3-taille%.0f.txt", name, d );
+    }
+    else
+    {
+        snprintf(exit_file, (strlen(name)+20), "%s-deg3-taille%.0f-5.txt", name, d );
+    }
+    
     
     Image I;
     I = lire_fichier_image(fichier);
