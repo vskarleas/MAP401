@@ -1,5 +1,11 @@
 # MAP401 Software Project
 
+## Description
+
+This project is for the course MAP401 (DLST). The explication of the project can be found at Poly-cours-td.pdf and the questions for every Task1-8 are explained in detailed on the file Poly-tp.pdf
+
+This work is licensed under the MIT license
+
 ## Notes
 
 This library isn't in synchromisation with Turing. It requires an SFTP connection via the Cyberduck software. You can work locally on your machine and overwrite the files later on DLST files server via the SFTP connection.
