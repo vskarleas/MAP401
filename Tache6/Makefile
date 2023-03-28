@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geom test_contour test_postscript test_mask test_simplification
+EXECUTABLES = test_image test_geom test_contour test_postscript test_mask test_simplification test_simplification-zebres-2000x1500 test_simplification-zebres-1000x0750 test_simplification-zebres-3000x2250 test_simplification-zebres-4000x3000 test_simplification-courbe_hilbert_7 test_simplification-courbe_hilbert_8 test_simplification-courbe_hilbert_9 test_simplification-courbe_hilbert_10
 
 
 #############################################################################
@@ -135,8 +135,63 @@ test_simplification.o : test_simplification.c contour.h image.h
 	@echo "Compilation du module test_simplification"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
-		
-		
+
+test_simplification-zebres-2000x1500.o : test_simplification-zebres-2000x1500.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification-zebres-2000x1500"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+test_simplification-zebres-1000x0750.o : test_simplification-zebres-1000x0750.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification-zebres-1000x0750"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+test_simplification-zebres-3000x2250.o : test_simplification-zebres-3000x2250.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification-zebres-3000x2250"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+test_simplification-zebres-4000x3000.o : test_simplification-zebres-4000x3000.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification-zebres-4000x3000"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+test_simplification-courbe_hilbert_10.o : test_simplification-courbe_hilbert_10.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification-courbe_hilbert_10"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<		
+
+test_simplification-courbe_hilbert_9.o : test_simplification-courbe_hilbert_9.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification-courbe_hilbert_9"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<	
+
+test_simplification-courbe_hilbert_8.o : test_simplification-courbe_hilbert_8.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification-courbe_hilbert_8"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<	
+
+test_simplification-courbe_hilbert_7.o : test_simplification-courbe_hilbert_7.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification-courbe_hilbert_7"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<	
+
 ########################################################
 # regles explicites de creation des executables
 
@@ -182,6 +237,62 @@ test_simplification : test_simplification.o contour.o image.o geom2d.o sequence_
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
+test_simplification-zebres-2000x1500 : test_simplification-zebres-2000x1500.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_simplification-zebres-1000x0750 : test_simplification-zebres-1000x0750.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_simplification-zebres-3000x2250 : test_simplification-zebres-3000x2250.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_simplification-zebres-4000x3000 : test_simplification-zebres-4000x3000.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+
+test_simplification-courbe_hilbert_10 : test_simplification-courbe_hilbert_10.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_simplification-courbe_hilbert_9 : test_simplification-courbe_hilbert_9.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_simplification-courbe_hilbert_8 : test_simplification-courbe_hilbert_8.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_simplification-courbe_hilbert_7 : test_simplification-courbe_hilbert_7.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
 
 # regle pour "nettoyer" le r�pertoire
 clean:

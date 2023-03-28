@@ -38,6 +38,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V7.5: 21/03/2023: Debut Tache 7.2
 * V7.6: 21/03/2023: Correctioons on Tache7.2 - verfied function approx_bezier3
 * V7.7: 27/03/2023: Tache 7.2 completed
+* V8.1: 28/03/2023: Tache 8 started - remaining comments, README tests verification, as well as eps files creation with the rest of the files Asterix3, lettre-L-Cursive and ColombesDeLaPaix pour les methodes degree2 et degree3. A completion of the word file for Tache 8 Partie 2 is required (trasnfrom eps to png and complete the table for ColombesDeLaPaix pour la methode de simplification).
 
 ## Sync
 
@@ -61,3 +62,5 @@ Below you can find the releases of the code as well as a callendar of the latest
 * Tache6: test_simplification
 * Tache7.1: test_approx & test_degree2
 * Tache7.2: test_approx3 & test_degree3
+* Tache8.1:
+* Tache8.2:

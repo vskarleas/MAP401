@@ -1006,7 +1006,7 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
         {
             i_dbl = (double)(i);
             alpha = (6 * i_dbl * i_dbl * i_dbl * i_dbl) - (8 * n_double * i_dbl * i_dbl * i_dbl) + (6 * i_dbl * i_dbl) - (4 * n_double * i_dbl) + (n_double * n_double * n_double * n_double) - (n_double * n_double);
-            //FIXED
+            
             id = T.tab[j1 + i];
             x = x + alpha * (id.x);
             y = y + alpha * (id.y);

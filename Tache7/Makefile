@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geom test_contour test_postscript test_mask test_simplification test_approx test_degree2 test_degree3 test_approx3
+EXECUTABLES = test_image test_geom test_contour test_postscript test_mask test_simplification test_approx test_degree2 test_degree3 test_approx3 test_degree2-tache8 test_degree3-tache8 test_simplification-tache8
 
 
 #############################################################################
@@ -163,6 +163,27 @@ test_degree3.o : test_degree3.c contour.h image.h
 	@echo "Compilation du module test_degree3"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
+
+test_degree2-tache8.o : test_degree2-tache8.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_degree2-tache8"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+test_degree3-tache8.o : test_degree3-tache8.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_degree3-tache8"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+test_simplification-tache8.o : test_simplification-tache8.c contour.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification-tache8"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
 		
 ########################################################
 # regles explicites de creation des executables
@@ -237,8 +258,26 @@ test_degree3 : test_degree3.o contour.o image.o geom2d.o sequence_point.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
+test_degree2-tache8 : test_degree2-tache8.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
 
+test_degree3-tache8 : test_degree3-tache8.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
 
+test_simplification-tache8 : test_simplification-tache8.o contour.o image.o geom2d.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
 
 # regle pour "nettoyer" le r�pertoire
 clean:
