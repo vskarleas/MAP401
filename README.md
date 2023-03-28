@@ -46,6 +46,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V7.7: 27/03/2023: Tache 7.2 completed
 * V8.1: 28/03/2023: Tache 8 started - remaining comments, README tests verification, as well as eps files creation with the rest of the files Asterix3, lettre-L-Cursive and ColombesDeLaPaix pour les methodes degree2 et degree3. A completion of the word file for Tache 8 Partie 2 is required (trasnfrom eps to png and complete the table for ColombesDeLaPaix pour la methode de simplification).
 * V8.2: 28/03/2023: Bug fices on contour.c and automatisation of testing process for test_degree2-tache8, test_degree3-tache8 and test_simplification-tache8
+* V8.3: 28/03/2023: Completion of comments for Tache 8
 
 ## Sync
 
