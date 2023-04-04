@@ -48,7 +48,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V8.2: 28/03/2023: Bug fices on contour.c and automatisation of testing process for test_degree2-tache8, test_degree3-tache8 and test_simplification-tache8
 * V8.3: 28/03/2023: Completion of comments for Tache 8
 * V8.4 : Bug fixes for Tache 8
-* V9: Source code, finalisation and bug
+* V9: Source code, finalisation and bug fixes
 
 ## Sync
 
