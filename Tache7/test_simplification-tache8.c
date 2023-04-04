@@ -49,7 +49,7 @@ int main(int argc, char **argv)
     while (al != NULL)
     {
         Tableau_Point T = sequence_points_liste_vers_tableau(al->data);
-        el = simplification_douglas_peucker(al->data, 0,(T.taille)-1, d);
+        el = simplification_douglas_peucker(T, 0,(T.taille)-1, d);
         ajouter_element_liste_Contours(&simple, el);
         al = al->suiv;
     }

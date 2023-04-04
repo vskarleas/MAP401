@@ -667,10 +667,8 @@ void create_postscript_contours(Liste_Contours c, char *file_name, int hauteur, 
     return;
 }
 
-Contour simplification_douglas_peucker(Contour C, int j1, int j2, double d)
+Contour simplification_douglas_peucker(Tableau_Point T, int j1, int j2, double d)
 {
-    Tableau_Point T = sequence_points_liste_vers_tableau(C);
-
     // Segment creation
     Segment S;
     S.A = T.tab[j1];
@@ -704,11 +702,11 @@ Contour simplification_douglas_peucker(Contour C, int j1, int j2, double d)
 
         Contour L1;
         L1 = creer_liste_Point_vide();
-        L1 = simplification_douglas_peucker(C, j1, far_away, d);
+        L1 = simplification_douglas_peucker(T, j1, far_away, d);
 
         Contour L2;
         L2 = creer_liste_Point_vide();
-        L2 = simplification_douglas_peucker(C, far_away, j2, d);
+        L2 = simplification_douglas_peucker(T, far_away, j2, d);
 
         return concatener_liste_Point(L1, L2);
     }

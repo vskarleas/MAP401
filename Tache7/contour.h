@@ -71,7 +71,7 @@ void create_postscript_fill(Contour c, char *file_name, int hauteur, int largeur
 
 void create_postscript_contours(Liste_Contours c, char *file_name, int hauteur, int largeur);
 
-Contour simplification_douglas_peucker(Contour C, int j1, int j2, double d);
+Contour simplification_douglas_peucker(Tableau_Point T, int j1, int j2, double d);
 
 Point calcul_ct_bezier2(Bezier2 b2, double t);
 

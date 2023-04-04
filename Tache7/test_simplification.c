@@ -50,7 +50,7 @@ int main(int argc, char **argv)
     while (al != NULL)
     {
         Tableau_Point T = sequence_points_liste_vers_tableau(al->data);
-        el = simplification_douglas_peucker(al->data, 0,(T.taille)-1, 1);
+        el = simplification_douglas_peucker(T, 0,(T.taille)-1, 1);
         ajouter_element_liste_Contours(&simple, el);
         al = al->suiv;
     }
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
     while (al2 != NULL)
     {
         Tableau_Point T2 = sequence_points_liste_vers_tableau(al2->data);
-        el2 = simplification_douglas_peucker(al2->data, 0,(T2.taille)-1, 2);
+        el2 = simplification_douglas_peucker(T2, 0,(T2.taille)-1, 2);
         ajouter_element_liste_Contours(&simple2, el2);
         al2 = al2->suiv;
     }
@@ -98,7 +98,7 @@ int main(int argc, char **argv)
     while (al3 != NULL)
     {
         Tableau_Point T3 = sequence_points_liste_vers_tableau(al3->data);
-        el3 = simplification_douglas_peucker(al3->data, 0,(T3.taille)-1, 0);
+        el3 = simplification_douglas_peucker(T3, 0,(T3.taille)-1, 0);
         ajouter_element_liste_Contours(&simple3, el3);
         al3 = al3->suiv;
     }
