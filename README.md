@@ -48,6 +48,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V8.2: 28/03/2023: Bug fices on contour.c and automatisation of testing process for test_degree2-tache8, test_degree3-tache8 and test_simplification-tache8
 * V8.3: 28/03/2023: Completion of comments for Tache 8
 * V8.4 : Bug fixes for Tache 8
+* V9: Source code, finalisation and bug
 
 ## Sync
 
@@ -60,6 +61,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 7. 28/02/2023; PC(V7.2) -> Turing (Link for Tache 7 partie 1 sent to prof in order to check out what we have done for the calculation of the distance of a point from a point to the point of a courbe bezier)
 8. 21/03/2023: PC(7.4) -> Turing (Tache 7.1)
 9. 27/03/2023: PC(7.7) -> Turing (Tache 7.2)
+10. 4/42023: PC(9) -> Turing (S14 + source code)
 
 ## Tests Programmes
 
