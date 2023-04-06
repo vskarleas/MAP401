@@ -5,12 +5,14 @@
 #include "contour.h"
 #include "image.h"
 
+/* Verifier que la simplifcation par courbe bezier des degrees 3 */
 int main(int argc, char **argv)
 {
     printf("Enter the name of the image's file without any extension (pbm)\n");
     char name[256];
     double d = 0.0;
     scanf("%s", name);
+    //Distance seuil passe en terminal
     printf("D=");
     scanf("%lf", &d);
     printf("\n");
@@ -20,6 +22,7 @@ int main(int argc, char **argv)
     strcpy(fichier,name);
     strcat(fichier,".pbm");
 
+    //Automatic traitment of output files (eps and txt)
     if (d != 0.5)
     {
         snprintf(exit_file, (strlen(name)+20), "%s-deg3-taille%.0f.txt", name, d );
@@ -56,6 +59,7 @@ int main(int argc, char **argv)
         al = al->suiv;
     }
 
+    //Affichage des donnes apres la simplification 
     contours_data_bezier3(simple);
     create_postscript_contours_bezier3(simple, exit_file, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 

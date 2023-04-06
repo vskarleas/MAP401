@@ -1052,7 +1052,7 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
         P1 = T.tab[j1 + 1];
         C1 = set_point((4 * P1.x - C3.x) / 3, (4 * P1.y - C3.y) / 3);
         C2 = set_point((4 * P1.x - C0.x) / 3, (4 * P1.y - C0.y) / 3);
-        // Declaration de la courbe bezier
+        // Declaration de la courbe bezier de dgeree 3 (4 points)
         b3.A = C0;
         b3.B = C1;
         b3.C = C2;
@@ -1074,6 +1074,7 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
         double y = 0.0;
         Point id;
         double i_dbl, alpha;
+        //Declaration de la fonction φ(χ) intermidiaire
         for (int i = 1; i < n; i++)
         {
             i_dbl = (double)(i);
@@ -1103,6 +1104,7 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
         res_y = b * ((double)C0.y) + lambda * y + a * (double)(C3.y);
         C2 = set_point(res_x, res_y);
 
+        //Declaration de la courble de bezier de dgeree 3 (4 points)
         b3.A = C0;
         b3.B = C1;
         b3.C = C2;
@@ -1111,6 +1113,9 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
     }
     else
     {
+        //Traitment des cas d'erreur
+        //ON TOMBE JAMAIS DANS CET PARTIE DU CODE, MAIS SI ON EST TOMBÉ
+        //ON PEUT DETECTER PLUS FACILEMENT L'ERREUR
         b3.A = set_point(-1, -1);
         b3.B = set_point(-1, -1);
         b3.C = set_point(-1, -1);
@@ -1120,6 +1125,7 @@ Bezier3 approx_bezier3(Contour c, int j1, int j2)
     }
 }
 
+/* Calcul de la distance d'un point par la courbe de bezier de degree 3*/
 double distance_point_bezier3(Point P1, Bezier3 b3, double ti)
 {
     double result;
@@ -1130,6 +1136,7 @@ double distance_point_bezier3(Point P1, Bezier3 b3, double ti)
     return result;
 }
 
+/* Simplifcation direct par approximation des contours vers courbes de bezier de dgree 3*/
 Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, double d)
 {
     int n = j2 - j1;
@@ -1140,7 +1147,7 @@ Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, double
 
     Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
-    // Variable initialisations
+    // Variables initialisations
     double distance, ti;
     double max_distance = 0; // dmax
     int far_away, j;
@@ -1156,7 +1163,7 @@ Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, double
             far_away = i;
         }
     }
-
+    //Application de l'agorithm de Douglas
     if (max_distance <= d)
     {
         Contour L;
@@ -1170,6 +1177,7 @@ Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, double
     else
     {
 
+        //Recursivite appliqué
         Contour L1;
         L1 = creer_liste_Point_vide();
         L1 = simplification_douglas_peucker_bezier3(C, j1, far_away, d);
@@ -1182,6 +1190,7 @@ Contour simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, double
     }
 }
 
+/* Creation du fichier EPS pour liste des contours simplifie par la methode des courbes de bezier de degree 3 */
 void create_postscript_contours_bezier3(Liste_Contours c, char *file_name, int hauteur, int largeur) // Mode remplisage uniquement
 {
     // Extension managment
@@ -1190,6 +1199,7 @@ void create_postscript_contours_bezier3(Liste_Contours c, char *file_name, int h
     strcpy(with_extension, no_extension);
     strcat(with_extension, ".eps"); // concantenation
 
+    //File access management
     FILE *fptr;
     fptr = fopen(with_extension, "w");
     if (fptr == NULL)
@@ -1198,6 +1208,7 @@ void create_postscript_contours_bezier3(Liste_Contours c, char *file_name, int h
         exit(1);
     }
 
+    //File introductions written
     fprintf(fptr, "%%!PS-Adobe-3.0 EPSF-3.0\n");
     fprintf(fptr, "%%%%BoundingBox:   %d   %d   %d   %d\n", 0, 0, largeur, hauteur);
     fprintf(fptr, "\n");
@@ -1208,6 +1219,7 @@ void create_postscript_contours_bezier3(Liste_Contours c, char *file_name, int h
         Cellule_Liste_Point *el;
         el = (al->data).first;
         Bezier3 b3;
+        //Passing points to the bezier curve
         b3.A = el->data;
         el = el->suiv;
         b3.B = el->data;
@@ -1215,9 +1227,12 @@ void create_postscript_contours_bezier3(Liste_Contours c, char *file_name, int h
         b3.C = el->data;
         el = el->suiv;
         b3.D = el->data;
+        //moveto is used only once
         fprintf(fptr, "%.3f %.3f moveto ", b3.A.x, hauteur - b3.A.y);
+        //this is why we are adding only B, C, D points for curveto synatx
         fprintf(fptr, "%.3f %.3f %.3f %.3f %.3f %.3f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
         el = el->suiv;
+        //Repeat for every curve on the specific contour
         while (el != NULL)
         {
             b3.A = el->data;
@@ -1234,6 +1249,7 @@ void create_postscript_contours_bezier3(Liste_Contours c, char *file_name, int h
         fprintf(fptr, "\n");
         al = al->suiv;
     }
+    //Wrtting file mode
     fprintf(fptr, "fill\n");
     fprintf(fptr, "\n");
     fprintf(fptr, "\n");

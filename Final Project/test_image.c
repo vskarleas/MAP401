@@ -4,6 +4,7 @@
 #include"types_macros.h"
 #include"image.h"
 
+/* Test de verification si la fonction de negation de l'image marche et si la fonction d'affichage de pbm marche aussi */
 int main(int argc, char **argv)
 {
     if (argc!=2)

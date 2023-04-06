@@ -8,6 +8,7 @@
 int main(int argc, char **argv)
 {
     //Test no 6
+    /* Test de verification que l'image mask est correct */
     printf("Starting Test 6\n");
     printf("Enter the name of the image's file without any extension (pbm)\n");
     char name[256];
@@ -34,6 +35,7 @@ int main(int argc, char **argv)
 
 
     //Test no 7
+    /* Test de verifications que la lecture des multiples contours ainsi que la creation du postscript des multiples contours marche aussi */
     printf("Starting Test 7\n");
     printf("=====================\n");
     printf("Test du multiple contours de l'image:\n");

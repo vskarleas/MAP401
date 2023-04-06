@@ -21,13 +21,14 @@ Cellule_Liste_Point *creer_element_liste_Point(Point v)
 	return el;
 }
 
+/* Creation d'une cellule de liste des contours */
 Cellule_Liste_Contours *creer_element_liste_Contours(Liste_Point v)
 {
 	Cellule_Liste_Contours *el;
 	el = (Cellule_Liste_Contours *)malloc(sizeof(Cellule_Liste_Contours));
 	if (el==NULL)
 	{
-		fprintf(stderr, "creer_element_liste_Point : allocation impossible\n");
+		fprintf(stderr, "creer_element_liste_Contours : allocation impossible\n");
 		exit(-1);
 	}
 	el->data = v;
@@ -35,13 +36,14 @@ Cellule_Liste_Contours *creer_element_liste_Contours(Liste_Point v)
 	return el;
 }
 
-/* cr�er une liste vide */
+/* cr�er une liste des points vide */
 Liste_Point creer_liste_Point_vide()
 {
 	Liste_Point L = {0, NULL, NULL};
 	return L;
 }
 
+/* Creation d'une liste des contours vide */
 Liste_Contours creer_liste_Contours_vide()
 {
 	Liste_Contours L = {0, NULL, NULL};
@@ -56,7 +58,7 @@ void ajouter_element_liste_Point(Liste_Point *L, Point e)
 	el = creer_element_liste_Point(e);
 	if (L->taille == 0)
 	{
-		/* premier �l�ment de la liste */
+		/* premier element de la liste */
 		L->first = L->last = el;
 	}
 	else
@@ -68,13 +70,14 @@ void ajouter_element_liste_Point(Liste_Point *L, Point e)
 	return;
 }
 
+/* Ajouter contour dans une liste des contours */
 void ajouter_element_liste_Contours(Liste_Contours *L, Liste_Point e)
 {
 	Cellule_Liste_Contours *el;
 	el = creer_element_liste_Contours(e);
 	if (L->taille == 0)
 	{
-		/* premier �l�ment de la liste */
+		/* premier element de la liste des contours */
 		L->first = L->last = el;
 	}
 	else
@@ -86,7 +89,7 @@ void ajouter_element_liste_Contours(Liste_Contours *L, Liste_Point e)
 	return;
 }
 
-/* suppression de tous les �l�ments de la liste, renvoie la liste L vide */
+/* suppression de tous les elements de la liste, renvoie la liste L vide */
 Liste_Point supprimer_liste_Point(Liste_Point L)
 {
 	Cellule_Liste_Point *el=L.first;

@@ -54,6 +54,10 @@ int main(int argc, char **argv)
     printf("=====================\n");
     Contour k;
     k = algo_contour(I, exit_file); // 1 here will be controlled from a variable on Tache 5 where more contpurs are required to be added on the same file
+    
+    /* Test de creation du postscript pour un contour (contour donne par l'algo_contour) */
+    /* LATER WE ARE USING algo_contours POUR LA LECTURE DES MULTIPLES LECTURES AINSI QUE LA
+    CREATION DU FICHIER POSTSCRIPT (EPS) POUR CEUX CONTOURS */
     if (id == 1)
     {
         create_postscript(k, exit_file, hauteur_image(I), largeur_image(I));

@@ -5,6 +5,8 @@
 #include "contour.h"
 #include "image.h"
 
+/* Test qui nous aide à verfier si la fonction approx_bezier2
+(approximation de contours vers courbe bezier 2) est correct */
 int main(int argc, char **argv)
 {
     //Test no 9
@@ -12,6 +14,7 @@ int main(int argc, char **argv)
     Contour c;
     c = creer_liste_Point_vide();
     int i = 0;
+    //Donner 8 points (comme l'exemple sur le Poly)
     while (i<=8)
     {
         Point A;

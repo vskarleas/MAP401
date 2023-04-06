@@ -19,12 +19,14 @@ typedef struct Liste_Point_
 	                       /* first = last = NULL et taille = 0 <=> liste vide */
 } Liste_Point;
 
+/* Type de la cellule de la liste des contours */
 typedef struct Cellule_Liste_Contours_
 {
 	Liste_Point data;    /* donn�e de l'�l�ment de liste */
 	struct Cellule_Liste_Contours_* suiv; /* pointeur sur l'�l�ment suivant */
 } Cellule_Liste_Contours;
 
+/* Type de la luse des contours */
 typedef struct Liste_Contours_
 {
 	unsigned int taille;        /* nombre d'�l�ments dans la liste */

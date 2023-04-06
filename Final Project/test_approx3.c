@@ -5,10 +5,13 @@
 #include "contour.h"
 #include "image.h"
 
+/* Test qui nous aide à verfier si la fonction approx_bezier3
+(approximation de contours vers courbe bezier 3) est correct */
 int main(int argc, char **argv)
 {
     //Test no 11
     printf("Starting Test 11\n");
+    //Cas pour deux points
     printf("For n = 1\n");
     Contour c;
     c = creer_liste_Point_vide();
@@ -42,6 +45,7 @@ int main(int argc, char **argv)
     printf("\n\n");
     //Test no 12
     printf("Starting Test 12\n");
+    //Cas pour trois points
     printf("For n = 2\n");
     c = creer_liste_Point_vide();
     i = 0;
@@ -75,6 +79,7 @@ int main(int argc, char **argv)
     printf("For n = >=3\n");
     c = creer_liste_Point_vide();
     i = 0;
+    //On donne 8 points (comme l'exemple sur le poly)
     while (i<=8)
     {
         Point A;

@@ -5,6 +5,7 @@
 #include "contour.h"
 #include "image.h"
 
+/* Verifier que la simplifcation par courbe bezier des degrees 2*/
 int main(int argc, char **argv)
 {
     printf("Enter the name of the image's file without any extension (pbm)\n");
@@ -12,6 +13,7 @@ int main(int argc, char **argv)
     double d = 0.0;
     scanf("%s", name);
     printf("D=");
+    //Distance seuil passe en terminal
     scanf("%lf", &d);
     printf("\n");
 
@@ -20,6 +22,7 @@ int main(int argc, char **argv)
     strcpy(fichier,name);
     strcat(fichier,".pbm");
 
+    //Automatic traitment of output files (eps and txt)
      if (d != 0.5)
     {
         snprintf(exit_file, (strlen(name)+20), "%s-deg2-taille%.0f.txt", name, d );
@@ -57,6 +60,7 @@ int main(int argc, char **argv)
         al = al->suiv;
     }
 
+    //Affichage des donnes apres la simplification 
     contours_data_bezier(simple);
     create_postscript_contours_bezier2(simple, exit_file, hauteur_image(I), largeur_image(I)); //Mode remplisage only
 

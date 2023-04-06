@@ -5,6 +5,7 @@
 
 #include "geom2d.h"
 
+/* Tests des fonctiosn gemometriques de la base */
 int main(int argc, char **argv)
 {
     printf("Testing equestions of geometry in 2 axes space\n");

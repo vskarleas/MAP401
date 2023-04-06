@@ -276,6 +276,7 @@ Image negatif_image(Image I)
 		A = get_pixel_image(I, j, i);
 		switch(A)
 			{
+				//Inversing pixels logic
 				case(BLANC):
 					set_pixel_image(negative, j, i, NOIR);
 					break;

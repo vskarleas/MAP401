@@ -5,6 +5,7 @@
 #include "contour.h"
 #include "image.h"
 
+/* Test de verification de la methode de simplification par segments */
 int main(int argc, char **argv)
 {
     printf("Enter the name of the image's file without any extension (pbm)\n");
@@ -49,6 +50,7 @@ int main(int argc, char **argv)
     while (al != NULL)
     {
         Tableau_Point T = sequence_points_liste_vers_tableau(al->data);
+        //Simplification par segments
         el = simplification_douglas_peucker(T, 0,(T.taille)-1, d);
         ajouter_element_liste_Contours(&simple, el);
         al = al->suiv;
