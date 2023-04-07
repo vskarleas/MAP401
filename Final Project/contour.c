@@ -273,7 +273,7 @@ Image mask_image(Image I)
     return mask;
 }
 
-/* Verification si l'image est video (il y a que des pixels blanchs) - utilisé pour finir la recherche des contours */
+/* Verification si l'image est vide (il y a que des pixels blancs) - utilisé pour finir la recherche des contours */
 bool image_blache(Image I)
 {
     Pixel A;
@@ -285,7 +285,7 @@ bool image_blache(Image I)
             switch (A)
             {
             case (NOIR):
-                return false; // false si et seulment si n'est pas blance
+                return false; // false si et seulment si n'est pas blanche
             default:
                 break;
             }
@@ -294,7 +294,7 @@ bool image_blache(Image I)
     return true;
 }
 
-// Retruns the contour and also writes the contour <file>.txt - This function will be modfied in order to write multiple contours in the <file>.tx
+// Returns the contour and also writes the contour <file>.txt - This function will be modfied in order to write multiple contours in the <file>.tx
 Contour algo_contour(Image I, char *file_name)
 {
     // Managing specific contour
@@ -373,7 +373,7 @@ Liste_Contours algo_contours(Image I)
     Image mask;
     //Initilisation de l'image mask
     mask = mask_image(I);
-    //Tank que la nouvelle image n'est pas vide, continuer de chercher pour des contours 
+    //Tant que la nouvelle image n'est pas vide, continue de chercher pour des contours 
     while (!image_blache(mask))
     {
         Point depart = trouver_pixel_depart(mask);
@@ -472,7 +472,7 @@ void contours_data(Liste_Contours c)
     int nb = 0;
     int nb_points;
     int segments = 0;
-    //Parcour de chaque liste des points
+    //Parcour de chaque liste de point
     while (el != NULL)
     {
         nb++;
@@ -482,7 +482,7 @@ void contours_data(Liste_Contours c)
         //Parcour de points de la liste des points en question
         while (e != NULL)
         {
-            nb_points++; //compteur des points totals des tous les contours
+            nb_points++; //compteur des points totaux de tous les contours
             e = e->suiv;
         }
         //Calcule des segments 
@@ -494,7 +494,7 @@ void contours_data(Liste_Contours c)
     printf("\n");
 }
 
-/* Aficher sur le terminal nombre des segments totals, ainsi que 
+/* Aficher sur le terminal nombre de segments totals, ainsi que 
 le nombre des contours pour une liste des contours. On l'utilise aux 
 differents endroits, avant et apres la methode de simplification par segments par exemple.
 Ici la ntion des segments, est la notion annoncé à partir de tache 5*/
@@ -517,7 +517,7 @@ void contours_data_simplification(Liste_Contours c)
         //Parcour de points de la liste des points en question
         while (e != NULL)
         {
-            nb_points++; //compteur des points totals des tous les contours
+            nb_points++; //compteur des points totals de tous les contours
             e = e->suiv;
         }
         segments = segments + nb_points; //Calcul des segments
@@ -790,7 +790,7 @@ Point calcul_ct_bezier3(Bezier3 b3, double t)
     return A;
 }
 
-/* Converstion de la courbe bezier de degree 2 en degree 3 pour la redaction du postscript  */
+/* Convertion de la courbe bezier de degree 2 en degree 3 pour la redaction du postscript  */
 Bezier3 conversion_bezier2_to_bezier3(Bezier2 b2)
 {
     Bezier3 b3;
