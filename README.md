@@ -50,6 +50,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V8.4 : Bug fixes for Tache 8
 * V9: Source code, finalisation and bug fixes
 * V9.1: Comments added on the source code. It remains to create the Final Rapport
+* V10.1: Avant termination du Rapport Final du projet
 
 ## Sync
 
