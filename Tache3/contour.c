@@ -286,7 +286,7 @@ Contour algo_contour(Image I, char *file_name)
             exit(1);
         }
 
-        fprintf(fptr, "1\n");
+        fprintf(fptr, "1\n");//One single contour at this specific Tache. This is changing dynamicly on the next taches
 
         Tableau_Point TP = sequence_points_liste_vers_tableau(c);
         int k;
