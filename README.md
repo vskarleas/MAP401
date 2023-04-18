@@ -52,6 +52,7 @@ Below you can find the releases of the code as well as a callendar of the latest
 * V9.1: Comments added on the source code. It remains to create the Final Rapport
 * V10.1: Avant termination du Rapport Final du projet
 * V10.2 : Completion du rapport final
+* V10.3 : Presentation finis
 
 ## Sync
 
