@@ -6,30 +6,30 @@
 
 ## Tache 1 - Image Bitmap
 
-Dans cette première tache le plus dur fut de compendre comment on allait s'y prendre pour extraire des données de chaque image bitmap (en évaluant chauqe pixel par noir ou blanc).
+Dans cette première tache le plus dur fut de compendre comment on allait s'y prendre pour extraire les données de chaque image bitmap (en évaluant chaque pixel par noir ou blanc).
 
-Lors de cette première on a dut construire les bases de notre codes qui sont extraire les données d'une image, on sauvegarde donc dans un premier temps la taille de l'image et on enregistre dans un tableau les coordonnées de chaque pixel noir.
+Lors de cette première tache on a dut construire les bases de notre codes qui sont de extraire les données d'une image, on sauvegarde donc dans un premier temps la taille de l'image et on enregistre dans un tableau les coordonnées de chaque pixel noir.
 
 ### Structures de données
 
-Dans cette tache pour la realisation des fonctions *ecrire_image* et *negatif_image* on utilise la structure de base d'une image bitmap qui est compose par le largeur de l'image, l'hauteur de l'image et un pointeur vers le tableu de pixels.
+Dans cette tache pour la realisation des fonctions *ecrire_image* et *negatif_image* on utilise la structure de base d'une image bitmap qui est compose de la largeur de l'image, la hauteur de l'image et un pointeur vers le tableu de pixels.
 
 ### Structure du programme
 
-Pour le tache 1, le code principal des fonctions *ecrire_image* et *negatif_image* sont inclus sur le fichier *image.c* qui viens avec un fichier de liaisons *image.h*
+Pour la tache 1, le code principal des fonctions *ecrire_image* et *negatif_image* sont inclus sur le fichier *image.c* qui viens avec un fichier de liaisons *image.h*
 
 ### Difficultés, problems et resolutions
 
-*Dans cette partie du rapport final on decrit en bullets les differents problems avec la resolution finale pour resoudre ce probleme, ainsi que differents points qu'on trouvé difficile pendant la realisation du tache.*
+*Dans cette partie du rapport final on decrit en bullets les differents problemes avec la resolution finale pour resoudre ce probleme, ainsi que differents points qu'on a trouvé difficile pendant la realisation des taches.*
 
-Pour le Tache 1:
+Pour la Tache 1:
 
-* Utilisation du profil de l'image pour recuperer l'hauter et le largeur au lieu d'utiliser les fonctions déja definis au debut du projet (source code initial)
-  * On a modifié le syntax sur nos fonctions *ecrire_image* et *negatif_image* pour faire une appelle aux fonctions hauteur_image et largeur_image.
+* Utilisation du profil de l'image pour recuperer la hauter et la largeur au lieu d'utiliser les fonctions déja definis au debut du projet (source code initial)
+  * On a modifié la syntax sur nos fonctions *ecrire_image* et *negatif_image* pour faire une appelle aux fonctions hauteur_image et largeur_image.
 * Retouner une image negative sans modification de l'image original
-  * Initialisation d'une image en utilisant la fonction creer_image, tout en declarant son hauteur et largeur par rapport l'hauteur et le largeur de l'image initial.
-* Probleme du bon lecture de l'image initial (soit pour effectuer un affichage sur le terminal en utilisant 0 et 1, soit pour creer le negatif de cette image) aux fonctions *ecrire_image* et *negatif_image*.
-  * Initialisation de variable de parcours largeur-hauteur (boucle imbroques) à 1
+  * Initialisation d'une image en utilisant la fonction creer_image, tout en declarant son hauteur et sa largeur par rapport l'hauteur et la largeur de l'image initial.
+* Probleme de la bonne lecture de l'image initial (soit pour effectuer un affichage sur le terminal en utilisant 0 et 1, soit pour creer le negatif de cette image) aux fonctions *ecrire_image* et *negatif_image*.
+  * Initialisation de la variable de parcours largeur-hauteur (boucle imbroques) à 1
 
     ```c
     for (int i=1; i<=hauteur; i++)
@@ -49,7 +49,7 @@ Pour le Tache 1:
     ...
     ```
 * Avoir une lecture des pixels le plus efficace pour les fonctions *ecrire_image* et *negatif_image*
-  * Utilisation de la syntax switch(A), avec A le couleur du pixel en question
+  * Utilisation de la syntax switch(A), avec A la couleur du pixel en question
     ```c
     ...
     A = get_pixel_image(I, j, i);
@@ -73,7 +73,7 @@ Tous ces objets peuvent être trouver dans le fichier *geom2d.h* ,il sera compl�
 
 ### Structure du programme
 
-Pour la meileur organisation des fichier de code, on a créé un nouveau fichier nome *geom2d.c* qui inclut tous les fonctions qui correspondent en calcul geometrique en dimension 2.
+Pour la meileur organisation des fichier de code, on a créé un nouveau fichier nomme *geom2d.c* qui inclut toutes les fonctions qui correspondent en calcul geometrique en dimension 2.
 
 De plus, on a construit le fichier *geom2d.h* dans lequel on a declaré les structures de données utilisés par les modules sur *geom2d.c*. Aussi, ce fichier inclut le profil de chaque focntion ecrit sur *geom2d.c*
 
@@ -97,10 +97,10 @@ typedef struct Point_
 
 ### Difficultés, problems et resolutions
 
-* Devrait utiliser des fonctiosn mathematiques en C. Par exemple: sqrt() pour la racine d'un nombre reel
+* Devrait utiliser des fonctions mathematiques en C. Par exemple: sqrt() pour la racine d'un nombre reel
 
   * On a definit *<math.h>* sur *geom2d.c*
-* Choicir le bon typage pour les fonctions geometrqiues en plan de dimension 2
+* Choisir le bon typage pour les fonctions geometrqiues en plan de dimension 2
 
   * Utiliser le type double pour les fonctions de la norme, de la distance et du produit scalaire
 
@@ -108,19 +108,19 @@ typedef struct Point_
 
 ### Structure du programme
 
-Dans cette partie du projet, on a cree un nouveau fichier qui s'appele *contour.c*. À partir du cette tache, c'est cette fichier qu'on va mettre à jour majoritement. Pour le tache 3, on a declaré tous les fonctions necesaires pour l'extraction d'un contour externe via la methode d'un robot virtuel.
+Dans cette partie du projet, on a cree un nouveau fichier qui s'appele *contour.c*. À partir de cette tache, c'est ce fichier qu'on va mettre à jour majoritement. Pour la tache 3, on a declaré toutes les fonctions necessaires pour l'extraction d'un contour externe via la methode d'un robot virtuel.
 
-Ça veut dire qu'il s'agit des fonctions d'initialisation du robot, lecture de la position, mis à jour de ses coordones et orientation, declaration de l'agorithme pour l'extraction d'un seul contour, ainsi que la recherche du pixel de depart (pixel par lequel on va commencer de chercher pour un contour). Effectivement, le fichier contour.c viens avec le fichier contour.h qui inclut la declaration de la structure des donnes pour le robot virtuel et son orientation ainsi que les profils de tous les fonctions.
+Cela veut dire que l'on créé toutes les fonctions d'initialisation du robot, lecture de la position, mis à jour de ses coordonees et orientation, declaration de l'agorithme pour l'extraction d'un seul contour, ainsi que la recherche du pixel de depart (pixel par lequel on va commencer de chercher pour un contour). Effectivement, le fichier contour.c viens avec le fichier contour.h qui inclut la declaration de la structure des donnees pour le robot virtuel et son orientation ainsi que les profils de toutes les fonctions.
 
-De plus, on a declaré un fichier qui s'appelle *sequence_point.c*. Il s'agit d'un fichier essentiel qui inclut tous les aides de traitment des structures des donnes declaré sur *sequence_point.h*. À partir de l'application de l'agorithme de contour (chercher pour un contour externe), on a besoin de stoquer tous les points du contour pour faire son extraction. C'est pourquoi, on a besoin de declarer des nouveaux types (structures des donnes).
+De plus, on a declaré un fichier qui s'appelle *sequence_point.c*. Il s'agit d'un fichier essentiel qui inclut toutes les aides de traitement des structures des donnees declaré sur *sequence_point.h*. À partir de l'application de l'agorithme de contour (chercher pour un contour externe), on a besoin de stoquer tous les points du contour pour faire son extraction. C'est pourquoi, on a besoin de declarer des nouveaux types (structures des donnes).
 
-Comme expliqué dans la partie ***structures de données - sequence_point.h***, l'utilisation des listes chainées est essentiel. Dans ce cadre la, les aides de traitment d'une liste des points s'agisent des fonctions de concatenation des listes, de suppresions des elements, initialisation d'une telle liste, ajouter elements dans une liste, ainsi que transformation d'une telle liste vers un tableau (qu'on aura besoin aux prochaines taches).
+Comme expliqué dans la partie ***structures de données - sequence_point.h***, l'utilisation des listes chainées est essentiel. Dans ce cadre la, les aides de traitement pour les liste de points, il s'agit des fonctions de concatenation de listes, de suppresions d'elements, initialisation d'une telle liste, ajouter des elements dans une liste, ainsi que transformation d'une telle liste vers un tableau (qu'on aura besoin aux prochaines taches).
 
 ### Structures de données
 
 #### sequence_point.h
 
-Vu qu'on ne connait pas le nombre exact des points d'un contour externe, on a besoin de declarer une liste des points (contour) avec un taille dynamique. C'est pourquoi il est utilisé la syntax d'une liste chainé. Effectivement, une liste chaine est une chaine des cellules laquelle à son ensemble construit la liste chainé. Alors on a:
+Vu qu'on ne connait pas le nombre exact des points d'un contour externe, on a besoin de declarer une liste des points (contour) avec un taille dynamique. C'est pourquoi on utilise la syntax d'une liste chainé. Effectivement, une liste chaine est une chaine de cellules a laquelle son ensemble construit la liste chainé. Alors on a:
 
 ```c
 ...
@@ -177,8 +177,8 @@ typedef struct {
 ### Difficultés, problems et resolutions
 
 * Trouver la signature de l'algo de contour (*algo_contour*)
-  * On a decidé de prendre une image et un nom du fichier. En ce qui concerne le fichier, il s'agot d'un fichier .txt qui inclus les points d'un contour (tres utile pour la verification que la fonction marce comme attendue)
-* Posibilité d'ecrire sur le fichier les differents points du contour sans lire le contour en utilisant des cellules vu que cette notion n'etait pas trés claire à notre tete pendant la periode de realisation de cette tache.
+  * On a decidé de prendre une image et un nom du fichier. En ce qui concerne le fichier, il s'agit d'un fichier .txt qui inclus les points d'un contour (tres utile pour la verification que la fonction marche comme attendue)
+* Possibilité d'ecrire sur le fichier les differents points du contour sans lire le contour en utilisant des cellules vu que cette notion n'etait pas trés claire dans notre tete pendant la periode de realisation de cette tache.
   * Transformation du contour (liste des points [liste chainé]) à un tableau. Aprés on fait un parcours normal du tableau, tout en ecrivant sur le fichier (*fptr*) le coordonees du chaque point (*P.x* et *P.y*)
     ```c
     ...
@@ -204,7 +204,7 @@ typedef struct {
                     {
                         voisin = get_pixel_image(I, j, 
     ```
-* L'agorithme de contour demande de calculer la nouvelle orientation du robot pour qu'on peut bien suivre le contour externe. La detection des bonnes pixels-voisin autour de notre pixel en question par rapport l'orientation du robot etait essentiel:
+* L'agorithme de contour demande de calculer la nouvelle orientation du robot pour qu'on puisse bien suivre le contour externe. La detection des bons pixels-voisin autour de notre pixel en question par rapport l'orientation du robot etait essentiel:
   * On a decidé d'avancer en divisant notre problem en 4 sous-cas qui dependent par l'orientation du notre robot. Après, en utilisant l'image "voisins d'un point (x,y)" on recupere les bonnes pixels voisins à gauche et à droit, et par rapport la logique expliqué sur l'image "configurations possibles", on decide la nouvelle orientation du robot.
     ![1681749324383](image/RapportFinal/1681749324383.png "voisins d'un point (x,y)")
 
@@ -286,8 +286,8 @@ typedef struct {
         }
     ...
     ```
-* On avait un probleme par rapport le tournage à gauche ou à droit du robot
-  * Effectivement, c'est l'orientation du robot qui change si on tourne à gauche ou à droit. Avec une ΣΟΒΑΡΗ reflection on a obtenu la logique suivante:
+* On avait un probleme quand rapport le robot doit tourner à gauche ou à droite .
+  * Effectivement, c'est l'orientation du robot qui change si on tourne à gauche ou à droit. Avec une beaucoup de reflection on a obtenu la logique suivante:
     ```c
     ...
     void tourner_a_gauche(Robot *r)
@@ -335,16 +335,16 @@ typedef struct {
 
 ### Structure du programme
 
-Dans le fichier contour.c on ajouté les fonctions *create_postscript* et *create_postscript_fill* qui construit le fichier EPS. Effectivement, le fichier contour.h etait mis à jour avec les profils des nouveaux fonctions.
+Dans le fichier contour.c on ajouté les fonctions *create_postscript* et *create_postscript_fill* qui construit le fichier EPS. Effectivement, le fichier contour.h etait mis à jour avec les profils des nouvelles fonctions.
 
 ### Structures de données
 
-Pas des nouvelles structures etait crée. On utilise la structure de données liste_point pour la realisation de cette tache.
+Pas de nouvelles structures sont crée. On utilise la structure de données liste_point pour la realisation de cette tache.
 
 ### Difficultés, problems et resolutions
 
-* Comment automatiser la processus de la creation et l'ouverture d'un fichier .EPS à partir d'un fichier .PBM passé en argument
-  * Utilisation de la fonction pre-declare en C strtok pour recuperer le nom du fichier sans l'extension  .PBM, tout en allocant la memoire necesaire pour l'ajoute de l'extension .EPS en utilisant le malloc et creation du nom final avec l'extension .eps
+* Comment automatiser le processus de la creation et l'ouverture d'un fichier .EPS à partir d'un fichier .PBM passé en argument
+  * Utilisation de la fonction pre-declare en C strtok pour recuperer le nom du fichier sans l'extension  .PBM, tout en allocant la memoire necessaire pour l'ajout de l'extension .EPS en utilisant le malloc et creation du nom final avec l'extension .eps
     ```c
     ...
     // Extension managment
@@ -354,8 +354,8 @@ Pas des nouvelles structures etait crée. On utilise la structure de données li
         strcat(with_extension, ".eps");
     ...
     ```
-* Image sur le fichier EPS etait affichè à l'invers
-  * Modification de la valeur *y* d'un point avec hauteur de l'image moins ca valeur initial comme marqué ci-dessous:
+* Image sur le fichier EPS etait affiché à l'inverse
+  * Modification de la valeur *y* d'un point avec hauteur de l'image moins sa valeur initial comme marqué ci-dessous:
     ```c
     ...
     Cellule_Liste_Point *el;
@@ -372,27 +372,27 @@ Pas des nouvelles structures etait crée. On utilise la structure de données li
 * N'oubliez pas d'ajouter le *setlinewidth* sur le fichier EPS
 * Faire atention en mode de remplisage (fill ou stroke)
 
-## Tache 5 - Extraction des contours d'un image
+## Tache 5 - Extraction des contours d'une image
 
 ### Structure du programme
 
-Dans le fichier contour.c on ajoute la fonction algo_contours qui renvoie la liste des contours pour un image. Pour etre capable de detecter tous les contours d'une image on a besoin le mask de l'image originale. Il s'agit d'une image qui a que les pixels noirs de l'image originale avec un voisin en nord blanche.
+Dans le fichier contour.c on ajoute la fonction algo_contours qui renvoie la liste des contours pour une image. Pour etre capable de detecter tous les contours d'une image on a besoin d'un mask de l'image originale. Il s'agit d'une image dont tous les pixels noirs de l'image originale qui ont un pixel blanc au nord sont répertorié.
 
 Alors, au lieu de chercher le point de depart de chaque contour dans l'image originale, on le cherche dans l'image mask qui est mis à jour chaque fois qu'un point est mis sur le contour en question.
 
-Effectivement, on a besoin une maniere de detcter qu'il n'y plus des contours pour l'image orginale. C'est pourquoi, on a construit la fonction *image_mask* qui verifie si il y a ou pas des pixels noirs ou si l'image a que des pixels blanches. Si l'image mask a que des pixels blanches, alors ça veut dire qu'il n'y a pas d'autres contours.
+Effectivement, on a besoin une maniere de detecter qu'il n'y plus de contours pour l'image orginale. C'est pourquoi, on a construit la fonction *image_mask* qui verifie si il y a ou pas des pixels noirs ou si l'image a que des pixels blanches. Si l'image mask a que des pixels blanches, alors ça veut dire qu'il n'y a pas d'autres contours à extraire.
 
-Dans le cadre des compte rendus pour le Tache 5, on avait besoin d'ajouter quelques d'autres fonctions sur le fichier contour.c. Il s'agit des fonctions:
+Dans le cadre des compte rendus pour le Tache 5, on avait besoin d'ajouter d'autres fonctions sur le fichier contour.c. Il s'agit des fonctions:
 
 1. *ecrire_fichier_contours*: Creer un .TXT avec tous les contours au lieu d'un seul contour comme on avait fait en Tache 4
 2. *contours_data*: Il affiche sur le terminal le nombre des contours et le nombre des segments totales
-3. *create_postscript_contours*: Ecriture du fichier .EPS pour un multiple des conours
+3. *create_postscript_contours*: Ecriture du fichier .EPS pour un multiple des contours
 
-Evidement, les profils des nouveaux fonctions etaient ajouté sur contour.h
+Evidement, les profils des nouvelles fonctions etaient ajouté sur contour.h
 
 ### Structures de données
 
-Dans cette partie du projet, il y avait quelques additions des types sur le fichier sequence_point.h et des fonctions d'aide correspondante sue sequence_point.c. Pour etre capable de traiter le mupliple nombre des contours, on a construit un nouveau type nomé *Liste_Contours* qui est en fait une liste chainé des contours (liste_point).
+Dans cette partie du projet, il y avait quelques additions des types sur le fichier sequence_point.h et des fonctions d'aide correspondante sue sequence_point.c. Pour etre capable de traiter le mupliple nombre des contours, on a construit un nouveau type nommé *Liste_Contours* qui est en fait une liste chainé des contours (liste_point).
 
 Dans ce cadre là, on a construit le type Cellule_Liste_Contours qu'on a besoin de construire la liste chaine des contours. Vous pouvez trouver les structures de données consruit ci-dessous:
 
@@ -454,7 +454,7 @@ typedef struct Liste_Contours_
     voisin = get_pixel_image(I, j, i - 1);
     ...
     ```
-* Ajouter chaque contour dans la liste des contours
+* Ajouter chaque contour dans la liste de contours
 
   * On a ecrit la fonction *ajouter_element_liste_Contours* qui ajout une liste de point sur un eliste des contours (sequence_point.c)
 
@@ -485,7 +485,7 @@ De plus, le profil de la fonction etait ajouté sur le fichier contour.h.
 
 ### Structures de données
 
-Il n'y a pas des nouvelles structures de données crées pour cette partie du projet comme la fonction *simplification_douglas_peucker* prend directement un tableau des points (un contour) et il fait la simplification du contour en question et en meme temps, les plusieurs contours d'un image sont traites un par un sur le program principal de cette tache.
+Il n'y a pas des nouvelles structures de données crées pour cette partie du projet comme la fonction *simplification_douglas_peucker* prend directement un tableau de points (un contour) et il fait la simplification du contour en question et en meme temps, les plusieurs contours d'un image sont traites un par un sur le program principal de cette tache.
 
 ```c
 ...
@@ -508,14 +508,15 @@ Liste_Contours simple;
 
 ### Difficultés, problems et resolutions
 
-* Probeleme avec la concatenation des listes 1 et 2 dans l'agorythm de Douglass
+* Probleme avec la concatenation des listes 1 et 2 dans l'agorythme de Douglass
+
   ```c
   ...
   return concatener_liste_Point(L1, L2);
   ...
   ```
 
-  * On avait oublié d'initiliase les lists à chaque appel recursif
+  * On avait oublié d'initiliaser les listes à chaque appel recursif
     ```c
     ...
     Contour L1;
@@ -530,9 +531,9 @@ Liste_Contours simple;
 
 ### Structure du programme
 
-Un etape essentiel est d'approoximer un contour vers une courbe de bezier. On a utilisé le partie theorique du TD pour consruire les fonctions *approx_bezier2* et *approx_bezier3*.
+Un etape essentiel est d'approximer un contour vers une courbe de bezier. On a utilisé le partie theorique du TD pour consruire les fonctions *approx_bezier2* et *approx_bezier3*.
 
-Dans le cadre que un courbe de bezier 2 doit etre transformé en corube de bezier de degree 3 pour construire le postscript, déjà on avait besoin de declarer une nouvelle fonction sur contour.c nomé *conversion_bezier2_to_bezier3*.
+Dans le cadre d'un courbe de bezier 2, elle doit etre transformé en courbe de bezier de degree 3 pour construire le postscript, déjà on avait besoin de declarer une nouvelle fonction sur contour.c nommé *conversion_bezier2_to_bezier3*.
 
 De plus, pour faire la simplification du Douglass Peucker tout en utilisant des courbes de Bezier, on a besoin de trouver la distance entre une courbe de bezier et un point. Du coup, on a créé les deux fonctions *distance_point_bezier2* et *distance_point_bezier3* qui ont besoin une sous-fonction chaque une qui est *calcul_ct_bezier2* et *calcul_ct_bezier3* respectivement. Les deux sous-fonctions sont responsables de trouver un segment perpendiculaire à la courbe.
 
@@ -613,14 +614,14 @@ typedef struct Bezier3_
 ...
 ```
 
-Par leur definition ils dependent d'un nombre different des points.
+Par leur definition ils dependent d'un nombre different de points.
 
-### Difficultés, problems et resolutions
+### Difficultés, problemes et resolutions
 
-* Fausse typage sur le calcul du calcul_ct_bezier2 et du calcul_ct_bezier3
+* Faux typage sur le calcul du calcul_ct_bezier2 et du calcul_ct_bezier3
   * Changement de int à double pour les x et y.
 * Malecriture d'une courbe de bezier sur les instructions postscript
-  * On faisait moveto sur chaque changement de courbe. On a modifié ça tout en faisant que des curveto pour les points non collineaires des courbes
+  * On faisait moveto sur chaque changement de courbe. On a modifié ça tout en faisant que des curveto pour les points non colineaires des courbes
     ```c
     ...
     fprintf(fptr, "%.3f %.3f moveto ", b3.A.x, hauteur - b3.A.y);
@@ -639,7 +640,7 @@ Par leur definition ils dependent d'un nombre different des points.
             }
     ...
     ```
-* On avait fait un erreur de transcription de la formule necesaire pour la fonction calcul_ct_bezier3. En fait en faisait t * t * (b3.D.x) au lieu de t * t * t * (b3.D.x). Pareil pour D.y.
+* On avait fait une erreur de transcription de la formule necessaire pour la fonction calcul_ct_bezier3. En fait en faisait t * t * (b3.D.x) au lieu de t * t * t * (b3.D.x). Pareil pour D.y.
 * Utilisataion du type int alors qu'on devrait toujours utiliser double sur la fonction approx_bezier2 et en general aux autres endroits du code.
   * On a bien changé le type int à double si c'etait necesaire
 * Il y avait un erreur sur le cas d'approximation d'un countour vers une courbe de bezier de degree 2 pour n>1
@@ -682,8 +683,8 @@ Par leur definition ils dependent d'un nombre different des points.
         }
     ...
     ```
-* On avait un segmentation fault sur le Tache 7.2
-  * On fait on faisait des appels aux fonctions construit pour les courbes de bezier de degree 2 au lieu d'appeller les bonnes fonctions. De plus, il y avait des erreurs de calcul sur par rapport la boucle interne responsable pour le cas n>2 pendant l'approximation d'un contour vers une courbe de bezier de degree 3. Aussi notre i = 1 etait initialisé à i = j1 qui n'etait pas bonne aussi.
+* On avait une segmentation fault sur le Tache 7.2
+  * On fait on faisait des appels aux fonctions construit pour les courbes de bezier de degree 2 au lieu d'appeller les bonnes fonctions. De plus, il y avait des erreurs de calcul par rapport à la boucle interne responsable pour le cas n>2 pendant l'approximation d'un contour vers une courbe de bezier de degree 3. Aussi notre i = 1 etait initialisé à i = j1 qui n'etait pas bonne aussi.
 
     ```c
     ...
@@ -728,9 +729,9 @@ Par leur definition ils dependent d'un nombre different des points.
 
 Dans la partie Tache 8.1 il etait demandé de tester la simplification par segments ainsi que le temps d'execution de notre code. En fait, pour une image de grande taille, le program faisait un killed.
 
-On a decouverte que pendant l'appelle de la fonction simplification_douglas_peucker on passait en argument une liste chaine des points (un contour), quand on avait deja transformé en tableau cette liste, tout en retaransformant cette liste ver un tableau dans la fonction. La conseqeunce etait d'avoir deux fois l'espace meoire pour un contour et pour plusieurs contours, la taille de la memoire demandé etait enorme. 
+On a decouvert que pendant l'appelle de la fonction simplification_douglas_peucker on passait en argument une liste chaine de points (un contour), quand on avait deja transformé en tableau cette liste, tout en retransformant cette liste vers un tableau dans la fonction. La consequence etait d'avoir deux fois l'espace memoire pour un contour et pour plusieurs contours, la taille de la memoire demandé etait enorme.
 
-Pour resoudre le problem, on avait effectué un changeemnt sur le profil de la fonction simplification_douglas_peucker et son corp pour prendre un tableau directement plutot qu'une chaine.
+Pour resoudre le probleme, on avait effectué un changement sur le profil de la fonction simplification_douglas_peucker et son corp pour prendre un tableau directement plutot qu'une chaine.
 
 ```c
 ...
@@ -743,9 +744,9 @@ el = simplification_douglas_peucker(T, 0,(T.taille)-1, 0);
 
 # Manuel utilisateur
 
-Chaque tache du ce projet viens avec plusieurs fichiers de test qu'on ecrit specificquement pour chaque tache dans le but de repondre aux question du compte rendu ainsi que de verifier que le programe marce comme prevu.
+Chaque tache de ce projet viens avec plusieurs fichiers de test qu'on ecrit specifiquement pour chaque tache dans le but de repondre aux question du compte rendu ainsi que de verifier que le programe marche comme prevu.
 
-Ceux fichiers de test sont les prgrammes principaux que l'utilisateur doit utiliser pour chaque Tache 5, 6 ou 7. Ci-dessous vous pouvez trouver un recupelatif des tous les tests qu'on a effectué pendant la duree du projet, ainsi que comment faire la compilation, comment executer le programme, quelles sont les donnees en entree et quels sont les r ́esultats en sortie pour les tests des taches 5, 6 et 7.
+Ceux fichiers de test sont les prgrammes principaux que l'utilisateur doit utiliser pour chaque Tache 5, 6 ou 7. Ci-dessous vous pouvez trouver un recapitulatif des tous les tests qu'on a effectué pendant la duree du projet, ainsi que comment faire la compilation, comment executer le programme, quelles sont les donnees en entree et quels sont les resultats en sortie pour les tests des taches 5, 6 et 7.
 
 ## Tests
 
@@ -774,9 +775,9 @@ Pour compiler il suffit d'ouvrir un terminal et se placer sur le repertoir du so
 
 Donner le nom du fichier de l'image de la quelle vous souhaitez faire l'extraction des contours.
 
-À la compleetion du programme, il y aura deux fichiers cree dans le repertoire. Un fichier .TXT avec tous les contours et ses points ainsi qu'un fichier .EPS que vous pouvez utiiser pour visiauliser l'image en utilisant un logiciel approprié.
+À la completion du programme, il y aura deux fichiers cree dans le repertoire. Un fichier .TXT avec tous les contours et ses points ainsi qu'un fichier .EPS que vous pouvez utiiser pour visiualiser l'image en utilisant un logiciel approprié.
 
-De plus sur le terminal vous pouvez trouver les details de cette image en ce qui cocerne le nombre des contours totales et les segments totals. Sur le terminal il y a aussi l'affichage de l'image initial et du mask de l'image (il est possible qu'il serait impossible de bien visualiser l'image et son mask sur le terminal à cause du grand nombre de l'hauteur et du largeur)
+De plus sur le terminal vous pouvez trouver les details de cette image en ce qui concerne le nombre des contours totales et les segments totals. Sur le terminal il y a aussi l'affichage de l'image initial et du mask de l'image (il est possible qu'il serait impossible de bien visualiser l'image et son mask sur le terminal à cause du grand nombre de l'hauteur et du largeur)
 
 ## Tache 6
 
@@ -792,18 +793,18 @@ Donner le nom du fichier de l'image de la quelle vous souhaitez faire la simplif
 
 Vous allez etre demandé de donner la distance seuil D qui vous souhaitez pour cette simplification.
 
-À la compleetion du programme, il y aura deux fichiers cree dans le repertoire. Un fichier .TXT avec tous les contours et ses points ainsi qu'un fichier .EPS que vous pouvez utiiser pour visiauliser l'image en utilisant un logiciel approprié. Le nom des fichiers crées est toujours de la forme NOM_IMAGE-simp-tailleD.(eps/txt)
+À la competion du programme, il y aura deux fichiers cree dans le repertoire. Un fichier .TXT avec tous les contours et ses points ainsi qu'un fichier .EPS que vous pouvez utiiser pour visualiser l'image en utilisant un logiciel approprié. Le nom des fichiers crées est toujours de la forme NOM_IMAGE-simp-tailleD.(eps/txt)
 
-Sur le terminal vous pouvez voir le nombre des contours et des segments totals avant et apres la simplification par segments.
+Sur le terminal vous pouvez voir le nombre de contours et des segments totals avant et apres la simplification par segments.
 
 ## Tache 7
 
-Pour le tache 7, il y a plusieurs programmes principaux que vous pouvez utiliser par rapport le chose que vous souhaitez faire:
+Pour la tache 7, il y a plusieurs programmes principaux que vous pouvez utiliser par rapport aux choses que vous souhaitez faire:
 
-* Si vous sohaitez faire une simplification par courbe de bezier de degree 2, vous devrez utiliser le programme ./test_degree2
-* Si vous sohaitez faire une simplification par courbe de bezier de degree 3, vous devrez utiliser le programme ./test_degree3
+* Si vous souhaitez faire une simplification par courbe de bezier de degree 2, vous devrez utiliser le programme ./test_degree2
+* Si vous souhaitez faire une simplification par courbe de bezier de degree 3, vous devrez utiliser le programme ./test_degree3
 
-Effectivement, il y aussi les programmes test_approx et test_approx3 qui etait utilisé par le programmers pour la verification des fonctions approx_bezier2 et approx_bezier3 respectivement. Dans le cadre d'un utilisateur, il aura utiliser que les programmes test_degree2 et test_degree3 pour lesquels on decrit les etapes d'utilisation ci-desosus.
+Effectivement, il y aussi les programmes test_approx et test_approx3 qui etait utilisé par le programmeurs pour la verification des fonctions approx_bezier2 et approx_bezier3 respectivement. Dans le cadre utilisateur, il faudra utiliser que les programmes test_degree2 et test_degree3 pour lesquels on decrit les etapes d'utilisation ci-desosus.
 
 ### test_degree2
 
@@ -819,7 +820,7 @@ Donner le nom du fichier de l'image de la quelle vous souhaitez faire la simplif
 
 Vous allez etre demandé de donner la distance seuil D qui vous souhaitez pour cette simplification.
 
-À la compleetion du programme, il y aura deux fichiers cree dans le repertoire. Un fichier .TXT avec tous les contours et ses points ainsi qu'un fichier .EPS que vous pouvez utiiser pour visiauliser l'image en utilisant un logiciel approprié. Le nom des fichiers crées est toujours de la forme NOM_IMAGE-deg2-tailleD.(eps/txt)
+À la completion du programme, il y aura deux fichiers cree dans le repertoire. Un fichier .TXT avec tous les contours et ses points ainsi qu'un fichier .EPS que vous pouvez utiiser pour visualiser l'image en utilisant un logiciel approprié. Le nom des fichiers crées est toujours de la forme NOM_IMAGE-deg2-tailleD.(eps/txt)
 
 Sur le terminal vous pouvez voir le nombre des contours et des segments totals avant et apres la simplification par courbes de bezier de degree 2.
 
@@ -833,13 +834,13 @@ Le test_degree3 depend des fichiers suivantes (compilation):
 
 Pour compiler il suffit d'ouvrir un terminal et se placer sur le repertoir du source code. Taper make. L'etape suivant est de taper ./*test_degree3*.
 
-Donner le nom du fichier de l'image de la quelle vous souhaitez faire la simplification par segments.
+Donner le nom du fichier de l'image de laquelle vous souhaitez faire la simplification par segments.
 
-Vous allez etre demandé de donner la distance seuil D qui vous souhaitez pour cette simplification.
+Vous allez etre demandé de donner la distance seuil D pour qui vous souhaitez pour cette simplification.
 
-À la compleetion du programme, il y aura deux fichiers cree dans le repertoire. Un fichier .TXT avec tous les contours et ses points ainsi qu'un fichier .EPS que vous pouvez utiiser pour visiauliser l'image en utilisant un logiciel approprié. Le nom des fichiers crées est toujours de la forme NOM_IMAGE-deg3-tailleD.(eps/txt)
+À la completion du programme, il y aura deux fichiers cree dans le repertoire. Un fichier .TXT avec tous les contours et ses points ainsi qu'un fichier .EPS que vous pouvez utiiser pour visualiser l'image en utilisant un logiciel approprié. Le nom des fichiers crées est toujours de la forme NOM_IMAGE-deg3-tailleD.(eps/txt)
 
-Sur le terminal vous pouvez voir le nombre des contours et des segments totals avant et apres la simplification par courbes de bezier de degree 3.
+Sur le terminal vous pouvez voir le nombre de contours et de segments totals avant et apres la simplification par courbes de bezier de degree 3.
 
 ---
 
