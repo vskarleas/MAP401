@@ -479,33 +479,265 @@ nouvelle_orientation(&robot, rb.x, rb.y, I);
 
 ### Structure du programme
 
-...
+Dans cette partie du projet on devrait faire une simplification des points des contours en utilisant la methode de Douglass Peucker. Effectivement, sur le fichier contour.c on a ajouté l'agorithme de cette methode et un nouveau fichier de test etait ajouté aussi (test_simplification.c - programme principal pour cette tache).
+
+De plus, le profil de la fonction etait ajouté sur le fichier contour.h.
 
 ### Structures de données
 
+Il n'y a pas des nouvelles structures de données crées pour cette partie du projet comme la fonction *simplification_douglas_peucker* prend directement un tableau des points (un contour) et il fait la simplification du contour en question et en meme temps, les plusieurs contours d'un image sont traites un par un sur le program principal de cette tache.
+
+```c
 ...
+Liste_Contours simple;
+    simple = creer_liste_Contours_vide();
+    Contour el;
+    el = creer_liste_Point_vide();
+
+    Cellule_Liste_Contours *al;
+    al = liste.first;
+    while (al != NULL)
+    {
+        Tableau_Point T = sequence_points_liste_vers_tableau(al->data);
+        el = simplification_douglas_peucker(al->data, 0,(T.taille)-1, 1);
+        ajouter_element_liste_Contours(&simple, el);
+        al = al->suiv;
+    }
+...
+```
 
 ### Difficultés, problems et resolutions
 
-* .
-* .
-* .
+* Probeleme avec la concatenation des listes 1 et 2 dans l'agorythm de Douglass
+  ```c
+  ...
+  return concatener_liste_Point(L1, L2);
+  ...
+  ```
+
+  * On avait oublié d'initiliase les lists à chaque appel recursif
+    ```c
+    ...
+    Contour L1;
+    L1 = creer_liste_Point_vide();
+    ...
+    Contour L2;
+    L2 = creer_liste_Point_vide();
+    ...
+    ```
 
 ## Tache 7 - Simplification de contours par Bézier
 
 ### Structure du programme
 
+Un etape essentiel est d'approoximer un contour vers une courbe de bezier. On a utilisé le partie theorique du TD pour consruire les fonctions *approx_bezier2* et *approx_bezier3*.
+
+Dans le cadre que un courbe de bezier 2 doit etre transformé en corube de bezier de degree 3 pour construire le postscript, déjà on avait besoin de declarer une nouvelle fonction sur contour.c nomé *conversion_bezier2_to_bezier3*.
+
+De plus, pour faire la simplification du Douglass Peucker tout en utilisant des courbes de Bezier, on a besoin de trouver la distance entre une courbe de bezier et un point. Du coup, on a créé les deux fonctions *distance_point_bezier2* et *distance_point_bezier3* qui ont besoin une sous-fonction chaque une qui est *calcul_ct_bezier2* et *calcul_ct_bezier3* respectivement. Les deux sous-fonctions sont responsables de trouver un segment perpendiculaire à la courbe.
+
+À la fin, on modifie l'agorithme de Douglass Peucker utilisé sur Tache 6 et on construit comme ça les fonctions *simplification_douglas_peucker_bezier2* et *simplification_douglas_peucker_bezier3*. Effectivement, une modification sur la fonction de la creation du postscript etait necesaire pour les courbes de bezier. Alors, on deux nouvelles fonctions *create_postscript_contours_bezier2* et *create_postscript_contours_bezier3.*
+
+Pour conclure, pour repondre aux questions du Tache 7, on avait besoin d'afficher sur le terminal le nombre des courbes de Bézier. Ainsi on a construit les fonctions *contours_data_bezier* et *contours_data_bezier3*
+
+```c
 ...
+void contours_data_bezier(Liste_Contours c)
+{
+    Cellule_Liste_Contours *el;
+    el = c.first;
+    int nb = 0;
+    int nb_beziers = 0;
+    while (el != NULL)
+    {
+        nb++;
+        Cellule_Liste_Point *e;
+        e = (el->data).first;
+        while (e != NULL)
+        {
+            e = e->suiv;
+            e = e->suiv;
+            e = e->suiv;
+            nb_beziers++;
+        }
+        el = el->suiv;
+    }
+    printf("Nombre des contours: %d\n", nb);
+    printf("Nombre des bezier totals: %d\n", nb_beziers);
+    printf("\n");
+}
+
+void contours_data_bezier3(Liste_Contours c)
+{
+    Cellule_Liste_Contours *el;
+    el = c.first;
+    int nb = 0;
+    int nb_beziers = 0;
+    while (el != NULL)
+    {
+        nb++;
+        Cellule_Liste_Point *e;
+        e = (el->data).first;
+        while (e != NULL)
+        {
+            e = e->suiv;
+            e = e->suiv;
+            e = e->suiv;
+            e = e->suiv;
+            nb_beziers++;
+        }
+        el = el->suiv;
+    }
+    printf("Nombre des contours: %d\n", nb);
+    printf("Nombre des bezier totals: %d\n", nb_beziers);
+    printf("\n");
+}
+...
+```
 
 ### Structures de données
 
+Vu qu'on doit travailer avec des courbes de bezier de degree 2 et 3, on devrait creer ceux nouveaux types. Ainsi dans le fichier geom2d.h on a:
+
+```c
 ...
+typedef struct Bezier2_
+{
+   Point A, B, C;
+} Bezier2;
+
+typedef struct Bezier3_
+{
+   Point A, B, C, D;
+} Bezier3;
+...
+```
+
+Par leur definition ils dependent d'un nombre different des points.
 
 ### Difficultés, problems et resolutions
 
-* .
-* .
-* .
+* Fausse typage sur le calcul du calcul_ct_bezier2 et du calcul_ct_bezier3
+  * Changement de int à double pour les x et y.
+* Malecriture d'une courbe de bezier sur les instructions postscript
+  * On faisait moveto sur chaque changement de courbe. On a modifié ça tout en faisant que des curveto pour les points non collineaires des courbes
+    ```c
+    ...
+    fprintf(fptr, "%.3f %.3f moveto ", b3.A.x, hauteur - b3.A.y);
+            fprintf(fptr, "%.3f %.3f %.3f %.3f %.3f %.3f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
+            el = el->suiv;
+            while (el != NULL)
+            {
+                b2.A = el->data;
+                el = el->suiv;
+                b2.B = el->data;
+                el = el->suiv;
+                b2.C = el->data;
+                b3 = conversion_bezier2_to_bezier3(b2);
+                fprintf(fptr, "%.3f %.3f %.3f %.3f %.3f %.3f curveto ", b3.B.x, hauteur - b3.B.y, b3.C.x, hauteur - b3.C.y, b3.D.x, hauteur - b3.D.y);
+                el = el->suiv;
+            }
+    ...
+    ```
+* On avait fait un erreur de transcription de la formule necesaire pour la fonction calcul_ct_bezier3. En fait en faisait t * t * (b3.D.x) au lieu de t * t * t * (b3.D.x). Pareil pour D.y.
+* Utilisataion du type int alors qu'on devrait toujours utiliser double sur la fonction approx_bezier2 et en general aux autres endroits du code.
+  * On a bien changé le type int à double si c'etait necesaire
+* Il y avait un erreur sur le cas d'approximation d'un countour vers une courbe de bezier de degree 2 pour n>1
+  * On a corigé la logique de la boucle sur ce cas. Alors on a:
+    ```c
+    ...
+    else if (n >= 2)
+        {
+            double n_double;
+            n_double = (double)(n);
+
+            // Calcul a et b
+            double a, b;
+            a = (3 * n_double) / ((n_double * n_double) - 1);
+            b = ((1 - (2 * n_double)) / (2 * (n_double + 1)));
+
+            double x = 0;
+            double y = 0;
+            Point id;
+            for (int i = j1 + 1; i < j2; i++)
+            {
+                id = T.tab[i];
+                x = x + id.x;
+                y = y + id.y;
+            }
+
+            // Transformner x et y en double
+            double res_x, res_y;
+
+            res_x = a * x + b * ((double)(C0.x) + (double)(C2.x));
+            res_y = a * y + b * ((double)(C0.y) + (double)(C2.y));
+
+            Point C1;
+            C1 = set_point(res_x, res_y);
+
+            b2.A = C0;
+            b2.B = C1;
+            b2.C = C2;
+            return b2;
+        }
+    ...
+    ```
+* On avait un segmentation fault sur le Tache 7.2
+  * On fait on faisait des appels aux fonctions construit pour les courbes de bezier de degree 2 au lieu d'appeller les bonnes fonctions. De plus, il y avait des erreurs de calcul sur par rapport la boucle interne responsable pour le cas n>2 pendant l'approximation d'un contour vers une courbe de bezier de degree 3. Aussi notre i = 1 etait initialisé à i = j1 qui n'etait pas bonne aussi.
+
+    ```c
+    ...
+    for (int i = 1; i < n; i++)
+            {
+                i_dbl = (double)(i);
+                alpha = (6 * i_dbl * i_dbl * i_dbl * i_dbl) - (8 * n_double * i_dbl * i_dbl * i_dbl) + (6 * i_dbl * i_dbl) - (4 * n_double * i_dbl) + (n_double * n_double * n_double * n_double) - (n_double * n_double);
+
+                id = T.tab[j1 + i];
+                x = x + alpha * (id.x);
+                y = y + alpha * (id.y);
+            }
+    ...
+    ```
+
+    On a corigé des erreurs sur le calcul de a et b toujours pour n>2, tout en verifiant que le n utilisé sur le calcul est du type double
+
+    ```c
+    ...
+    double n_double;
+            n_double = (double)(n);
+
+            // Calcul a et b
+            double a, b, lambda;
+            a = (-15 * n_double * n_double * n_double + 5 * n_double * n_double + 2 * n_double + 4) / (3 * (n_double + 2) * (3 * n_double * n_double + 1));
+            b = ((10 * n_double * n_double * n_double - 15 * n_double * n_double + n_double + 2) / (3 * (n_double + 2) * (3 * n_double * n_double + 1)));
+            lambda = (70 * n_double) / (3 * (n_double * n_double - 1) * (n_double * n_double - 4) * (3 * n_double * n_double + 1));
+    ...
+    ```
+* On avait une difficulté pour concatener un string avec un nombre pendant la creation automatique des fichiers .EPS et .TXT sur le programme principal
+  * On utilise la fonction deja declare en C snprintf
+
+    ```c
+    ...
+    snprintf(exit_file, (strlen(name)+20), "%s-deg3-taille%.0f.txt", name, d );
+    ...
+    ```
+
+## Tache 8
+
+### Remarque
+
+Dans la partie Tache 8.1 il etait demandé de tester la simplification par segments ainsi que le temps d'execution de notre code. En fait, pour une image de grande taille, le program faisait un killed.
+
+On a decouverte que pendant l'appelle de la fonction simplification_douglas_peucker on passait en argument une liste chaine des points (un contour), quand on avait deja transformé en tableau cette liste, tout en retaransformant cette liste ver un tableau dans la fonction. La conseqeunce etait d'avoir deux fois l'espace meoire pour un contour et pour plusieurs contours, la taille de la memoire demandé etait enorme. 
+
+Pour resoudre le problem, on avait effectué un changeemnt sur le profil de la fonction simplification_douglas_peucker et son corp pour prendre un tableau directement plutot qu'une chaine.
+
+```c
+...
+Tableau_Point T = sequence_points_liste_vers_tableau(al->data);
+el = simplification_douglas_peucker(T, 0,(T.taille)-1, 0);
+...
+```
 
 ---
 
@@ -646,8 +878,6 @@ Sur le terminal vous pouvez voir le nombre des contours et des segments totals a
 | 23   | 21/2/23 | Segmentation fault for Tache7.2                                                                                                                                                            | Verifying every single line of code that has been deployed on the github repository                                                         | 21/3/23                      | 26/3/23                      | terminé |
 | 24   | 28/3/23 | Couldn't concatinate text with number in order to generate the final name of the exite_file (for instance when the postscript is generated for an image and it's saved on a separate file) | Usage of the command snprintf with a size of buffer strlen(name)+x                                                                          | 28/3/23                      | 28/3/23                      | terminé |
 | 25   | 4/4/23  | Programme faisait de "killed" dans le tache 8.1                                                                                                                                            | On a changé le profil de la fonction simplification_dougal_peucker d'accepter directement un tableau des points au lieu d'une liste chaine | 4/4/23                       | 4/4/23                       | terminé |
-
-
 
 ---
 
