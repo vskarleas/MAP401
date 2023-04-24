@@ -5,8 +5,12 @@ Commandes pour la presentation le 25/4/2023
 3. On est dans la partie extraction de contours (Tache 5)
     - ./test_mask
     - tache5
-    - On a besoin de trouver l'image mask de l'image original pour trouver tous les contours de l'image.
-    - Le principe est de chercher le point de depart pour notre parcour des points. Quand le parcour est terminé (meme orientation et meme coordones que le point de depart), tout en misant à jour l'image mask (chaque pixel noir lue est transformé en pixel blache), on verfie si l'image mask est blanche. Si il n'est pas, on repete le processus. 
+    - On a besoin de trouver l'image mask de l'image original pour trouver tous les 
+    contours de l'image.
+    - Le principe est de chercher le point de depart pour notre parcour des points. 
+     Quand le parcour est terminé (meme orientation et meme coordones que le point de depart), 
+     tout en misant à jour l'image mask (chaque pixel noir lue est transformé en pixel blache), 
+    on verfie si l'image mask est blanche. Si il n'est pas, on repete le processus. 
     - Chaque ontour est sauvegardé sur une liste des contours
     - PETIT PRESENTATION DU FICHIER.TXT
 4. On est dans la partie simplification par segments (Tache 6)
@@ -17,8 +21,12 @@ Commandes pour la presentation le 25/4/2023
     - velo
     - D = 5
     - Ouvrir les EPS sur InkScape 
-    - La distance seuil a un impact sur la qualite de l'image. De plus on peut remarquer que le plus on augment la distanc eseuil, le plus se diminue les segments totals.
-    - Le principe est d'appliquer l'agorithme de Douglass Peucker. En fait pour chaque contour polygonal, on cherche de reduire le nombre des points en creant des segments dont la distance entre le point le plus eloigne de segment est inferieur de la distance seuil qu'on a donné sur le programme
+    - La distance seuil a un impact sur la qualite de l'image. De plus on peut remarquer 
+    que le plus on augment la distanc eseuil, le plus se diminue les segments totals.
+    - Le principe est d'appliquer l'agorithme de Douglass Peucker. En fait pour chaque 
+     contour polygonal, on cherche de reduire le nombre des points en creant des segments 
+     dont la distance entre le point le plus eloigne de segment est inferieur de la distance 
+     seuil qu'on a donné sur le programme.
     - MAXIME PRESENT LA PRINCIPE RECURSIF DE L'AGORITHME
 5. On est dans la partie simplification par bezier (Tache 7)
     - ./test_degree2
@@ -29,7 +37,13 @@ Commandes pour la presentation le 25/4/2023
     - D = 5
     - Ouvrir les fichiers EPS
     - COURBES MIEUX QUE SEGMENTS:
-    On constante très rapidement que la méthode par simplification des segments commence à modifier la nature de l’image original. Pour des distances seuils assez grandes, on constante qu’il est impossible de représenter des courbes au niveau des pixels et les points restants après la simplification. (Ça s’explique par la manière de création du fichier EPS et l’algorithme de Douglas qu’on utilise pour minimiser les points qu’on a besoin pour représenter l’image en fonctionne de la distance seuil donne en argument).
+    On constante très rapidement que la méthode par simplification des segments commence
+     à modifier la nature de l’image original. Pour des distances seuils assez grandes, 
+     on constante qu’il est impossible de représenter des courbes au niveau des pixels
+     et les points restants après la simplification. (Ça s’explique par la manière de 
+     création du fichier EPS et l’algorithme de Douglas qu’on utilise pour minimiser les
+     points qu’on a besoin pour représenter l’image en fonctionne de la distance seuil donne 
+     en argument).
 
     - ./test_degree2
     - velo
@@ -39,10 +53,25 @@ Commandes pour la presentation le 25/4/2023
     - D = 15
     - Ouvrir les nouveaux fichiers EPS
     - COURBE 3 MIEUX QUE COURBE 2:
-    Si on faisait une comparaison entre la méthode de courbe de Bézier de dégrée 2 et de courbe de Bézier de dégrée 3, on peut constater que pour une distance seuil moyenne (ex : 5), on ne perde pas un grand nombre des informations essentiels, en comparaison de l’image original.
+    Si on faisait une comparaison entre la méthode de courbe de Bézier de dégrée 2 et de 
+     courbe de Bézier de dégrée 3, on peut constater que pour une distance seuil moyenne 
+     (ex : 5), on ne perde pas un grand nombre des informations essentiels, en comparaison 
+     de l’image original.
 
-    En même temps, pour des distances seuils assez grandes, la méthode de courbes de Bézier de dégrée 2, même s’il est capable de représenter de courbes (manière de création du fichier EPS), elle est aussi incapable de maintenir toutes les informations de l’image originale. Ça s’explique par le fait qu’on a besoin de transformer les courbes de Bézier dégrée 2 aux courbes de Bézier de dégrée 3, et si les points construit qui complètent la base de la courbe de dégrée 3 ne font partie du contour original, ceux points sont considère comme "artificielles" qui nous amené à perdre la précision de la représention de ceux points.
+     En même temps, pour des distances seuils assez grandes, la méthode de courbes de Bézier 
+     de dégrée 2, même s’il est capable de représenter de courbes (manière de création du fichier
+     EPS), elle est aussi incapable de maintenir toutes les informations de l’image originale. 
+     
+     Ça s’explique par le fait qu’on a besoin de transformer les courbes de Bézier dégrée 2 aux
+     courbes de Bézier de dégrée 3, et si les points construit qui complètent la base de la 
+     courbe de dégrée 3 ne font partie du contour original, ceux points sont considère comme 
+     "artificielles" qui nous amené à perdre la précision de la représention de ceux points.
 
     - COMMENTAIRES:
-    On peut conclure que pour des distances seuil assez petit (ex : 0, 0.5, 1 ou 2), l’efficacité des trois méthodes, par rapport leur efficacité de maintenir la qualité de l’image, est un peu près la même.
-    La seule méthode qui est capable de maintenir tous les détails pour n’importe quelle distance seuil est celle de courbe de Bézier de dégrée 3, pour des raisons qu’on explique en partie ‘Commentaires sur les méthodes de simplification’. 
+    On peut conclure que pour des distances seuil assez petit (ex : 0, 0.5, 1 ou 2), 
+    l’efficacité des trois méthodes, par rapport leur efficacité de maintenir la qualité de 
+    l’image, est un peu près la même.
+    
+    La seule méthode qui est capable de maintenir tous les détails pour n’importe quelle 
+    distance seuil est celle de courbe de Bézier de dégrée 3, pour des raisons qu’on 
+    explique en partie ‘Commentaires sur les méthodes de simplification’. 
