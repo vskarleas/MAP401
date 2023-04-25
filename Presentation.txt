@@ -2,17 +2,20 @@ Commandes pour la presentation le 25/4/2023
 
 1. Se deplacer sur le repertoir de source code "Source"
 2. make
+VASILIS
 3. On est dans la partie extraction de contours (Tache 5)
     - ./test_mask
     - tache5
     - On a besoin de trouver l'image mask de l'image original pour trouver tous les 
     contours de l'image.
-    - Le principe est de chercher le point de depart pour notre parcour des points. 
+    - Le principe est de chercher le point de depart pour notre parcour des points dans l'image mask. 
      Quand le parcour est terminé (meme orientation et meme coordones que le point de depart), 
      tout en misant à jour l'image mask (chaque pixel noir lue est transformé en pixel blache), 
     on verfie si l'image mask est blanche. Si il n'est pas, on repete le processus. 
-    - Chaque ontour est sauvegardé sur une liste des contours
-    - PETIT PRESENTATION DU FICHIER.TXT
+    - Chaque Contour est sauvegardé sur une liste des contours
+MAXIME
+    - Presentation FICHIER.TXT
+VASILIS
 4. On est dans la partie simplification par segments (Tache 6)
     - ./test_simplification
     - velo
@@ -20,14 +23,17 @@ Commandes pour la presentation le 25/4/2023
     - ./test_simplification
     - velo
     - D = 5
-    - Ouvrir les EPS sur InkScape 
-    - La distance seuil a un impact sur la qualite de l'image. De plus on peut remarquer 
-    que le plus on augment la distanc eseuil, le plus se diminue les segments totals.
-    - Le principe est d'appliquer l'agorithme de Douglass Peucker. En fait pour chaque 
+     - Le principe est d'appliquer l'agorithme de Douglass Peucker. En fait pour chaque 
      contour polygonal, on cherche de reduire le nombre des points en creant des segments 
      dont la distance entre le point le plus eloigne de segment est inferieur de la distance 
-     seuil qu'on a donné sur le programme.
-    - MAXIME PRESENT LA PRINCIPE RECURSIF DE L'AGORITHME
+     seuil qu'on a donné sur le programme. On va les visualiser dans un instant
+    - Ouvrir les EPS sur InkScape
+MAXIME
+    - La distance seuil a un impact sur la qualite de l'image. De plus on peut remarquer 
+    que le plus on augment la distanc eseuil, le plus se diminue les segments totals.
+   
+    - Principe recursif de l'algorithme
+VASILIS
 5. On est dans la partie simplification par bezier (Tache 7)
     - ./test_degree2
     - velo
@@ -36,15 +42,16 @@ Commandes pour la presentation le 25/4/2023
     - velo
     - D = 5
     - Ouvrir les fichiers EPS
+MAXIME
     - COURBES MIEUX QUE SEGMENTS:
-    On constante très rapidement que la méthode par simplification des segments commence
+     On constante très rapidement que la méthode par simplification des segments commence
      à modifier la nature de l’image original. Pour des distances seuils assez grandes, 
      on constante qu’il est impossible de représenter des courbes au niveau des pixels
      et les points restants après la simplification. (Ça s’explique par la manière de 
      création du fichier EPS et l’algorithme de Douglas qu’on utilise pour minimiser les
      points qu’on a besoin pour représenter l’image en fonctionne de la distance seuil donne 
      en argument).
-
+VASILIS
     - ./test_degree2
     - velo
     - D = 15
@@ -66,7 +73,7 @@ Commandes pour la presentation le 25/4/2023
      courbes de Bézier de dégrée 3, et si les points construit qui complètent la base de la 
      courbe de dégrée 3 ne font partie du contour original, ceux points sont considère comme 
      "artificielles" qui nous amené à perdre la précision de la représention de ceux points.
-
+MAXIME
     - COMMENTAIRES:
     On peut conclure que pour des distances seuil assez petit (ex : 0, 0.5, 1 ou 2), 
     l’efficacité des trois méthodes, par rapport leur efficacité de maintenir la qualité de 
