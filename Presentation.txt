@@ -23,12 +23,12 @@ VASILIS
     - ./test_simplification
     - velo
     - D = 5
+    - Ouvrir les EPS sur InkScape
+MAXIME
      - Le principe est d'appliquer l'agorithme de Douglass Peucker. En fait pour chaque 
      contour polygonal, on cherche de reduire le nombre des points en creant des segments 
      dont la distance entre le point le plus eloigne de segment est inferieur de la distance 
      seuil qu'on a donné sur le programme. On va les visualiser dans un instant
-    - Ouvrir les EPS sur InkScape
-MAXIME
     - La distance seuil a un impact sur la qualite de l'image. De plus on peut remarquer 
     que le plus on augment la distanc eseuil, le plus se diminue les segments totals.
    
